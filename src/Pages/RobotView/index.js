@@ -1,15 +1,15 @@
 import {Button, Container, CssBaseline, Grid, ThemeProvider} from "@material-ui/core";
-import './App.css';
+import './index.css';
 import video from './media/Video.jpeg';
-import RobotView from './Pages/RobotView/index'
 
 
-function App() {
+function RobotView() {
   return (
-    <div className="App">
-    <RobotView/>
+    <div>
+      <img src={video} className="fill-window"></img>
+
     </div>
   );
 }
 
-export default App;
+export default RobotView;

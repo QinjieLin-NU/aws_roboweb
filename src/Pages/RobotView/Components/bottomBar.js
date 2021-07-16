@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
         right: "0",
         marginLeft: "auto",
         marginRight: "auto",
-        width: "40%",
+        width: "500px",
         background: theme.palette.background.default,
         height: "30px",
         borderRadius: "15px",
@@ -47,20 +47,26 @@ const useStyles = makeStyles(theme => ({
 
 function BottomBar(props) {
     const classes = useStyles();
+    // Data saved in states, init to random test data.
+    const [CPU, setCPU] = useState(87);
+    const [Memory, setMemory] = useState(70);
+    const [Battery, setBattery] = useState(61);
+    const [Ping, setPing] = useState(90);
+
     return (
         <div className={classes.wrapper}>
-            <CircularProgress className={classes.progress} variant="determinate" size={16} value={87} />
+            <CircularProgress className={classes.progress} variant="determinate" size={16} value={CPU} />
             <span className={classes.item + " " + classes.text}>CPU</span>
-            <span className={classes.item + " " + classes.number}>87%</span>
-            <CircularProgress className={classes.progress} variant="determinate" size={16} value={70} />
+            <span className={classes.item + " " + classes.number}>{CPU}%</span>
+            <CircularProgress className={classes.progress} variant="determinate" size={16} value={Memory} />
             <span className={classes.item + " " + classes.text}>MEMORY</span>
-            <span className={classes.item + " " + classes.number}>70%</span>
-            <CircularProgress className={classes.progress} variant="determinate" size={16} value={61} />
+            <span className={classes.item + " " + classes.number}>{Memory}%</span>
+            <CircularProgress className={classes.progress} variant="determinate" size={16} value={Battery} />
             <span className={classes.item + " " + classes.text}>BATTERY</span>
-            <span className={classes.item + " " + classes.number}>61%</span>
-            <CircularProgress className={classes.progress} variant="determinate" size={16} value={90} />
+            <span className={classes.item + " " + classes.number}>{Battery}%</span>
+            <CircularProgress className={classes.progress} variant="determinate" size={16} value={Ping} />
             <span className={classes.item + " " + classes.text}>PING</span>
-            <span className={classes.item + " " + classes.number}>68ms</span>
+            <span className={classes.item + " " + classes.number}>{Ping}ms</span>
         </div>
     );
 }

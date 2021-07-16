@@ -47,6 +47,7 @@ function ControlPanel(props) {
     const classes = useStyles();
     const [coordinate1, setCoordinate1] = useState([0, 0]);
     const [coordinate2, setCoordinate2] = useState([0, 0]);
+    // original set State function 
     //  update = v => this.setState({ text: `X: ${v.intensity.x>0 ? '+':''}${(v.intensity.x*100).toFixed(0)}% | Y: ${v.intensity.y>0 ? '+':''}${(v.intensity.y*100).toFixed(0)}%` })
 
     return (

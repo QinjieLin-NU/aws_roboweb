@@ -2,6 +2,7 @@ import { Button, Container, CssBaseline, Grid, ThemeProvider } from "@material-u
 import './index.css';
 import video from './media/Video.jpeg';
 import MiniView from './Components/miniView';
+import BottomBar from "./Components/bottomBar";
 
 function RobotView() {
     return (
@@ -11,6 +12,7 @@ function RobotView() {
                 <MiniView src="view1"/>
                 <MiniView src="view2"/>
             </div>
+            <BottomBar/>
         </div>
     );
 }

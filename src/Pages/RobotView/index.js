@@ -3,6 +3,7 @@ import './index.css';
 import video from './media/Video.jpeg';
 import MiniView from './Components/miniView';
 import BottomBar from "./Components/bottomBar";
+import ControlPanel from "./Components/controlPanel";
 
 function RobotView() {
     return (
@@ -13,6 +14,7 @@ function RobotView() {
                 <MiniView src="view2"/>
             </div>
             <BottomBar/>
+            <ControlPanel/>
         </div>
     );
 }

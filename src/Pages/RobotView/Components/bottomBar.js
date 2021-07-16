@@ -53,10 +53,10 @@ function BottomBar(props) {
             <span className={classes.item + " " + classes.text}>CPU</span>
             <span className={classes.item + " " + classes.number}>29%</span>
             <CircularProgress className={classes.progress} variant="determinate" size={16} value={12} />
-            <span className={classes.item + " " + classes.text}>Memory</span>
+            <span className={classes.item + " " + classes.text}>MEMORY</span>
             <span className={classes.item + " " + classes.number}>12%</span>
             <CircularProgress className={classes.progress} variant="determinate" size={16} value={61} />
-            <span className={classes.item + " " + classes.text}>Battery</span>
+            <span className={classes.item + " " + classes.text}>BATTERY</span>
             <span className={classes.item + " " + classes.number}>61%</span>
             <CircularProgress className={classes.progress} variant="determinate" size={16} value={90} />
             <span className={classes.item + " " + classes.text}>PING</span>

@@ -1,14 +1,15 @@
-import {Button, Container, CssBaseline, Grid, ThemeProvider} from "@material-ui/core";
+import {ThemeProvider } from "@material-ui/core";
 import './App.css';
-import video from './media/Video.jpeg';
 import RobotView from './Pages/RobotView/index'
-
+import { theme } from "./theme";
 
 function App() {
   return (
-    <div className="App">
-    <RobotView/>
-    </div>
+    <ThemeProvider theme={theme}>
+      <RobotView />
+    </ThemeProvider>
+
+
   );
 }
 

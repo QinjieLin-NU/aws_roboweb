@@ -49,12 +49,12 @@ function BottomBar(props) {
     const classes = useStyles();
     return (
         <div className={classes.wrapper}>
-            <CircularProgress className={classes.progress} variant="determinate" size={16} value={29} />
+            <CircularProgress className={classes.progress} variant="determinate" size={16} value={87} />
             <span className={classes.item + " " + classes.text}>CPU</span>
-            <span className={classes.item + " " + classes.number}>29%</span>
-            <CircularProgress className={classes.progress} variant="determinate" size={16} value={12} />
+            <span className={classes.item + " " + classes.number}>87%</span>
+            <CircularProgress className={classes.progress} variant="determinate" size={16} value={70} />
             <span className={classes.item + " " + classes.text}>MEMORY</span>
-            <span className={classes.item + " " + classes.number}>12%</span>
+            <span className={classes.item + " " + classes.number}>70%</span>
             <CircularProgress className={classes.progress} variant="determinate" size={16} value={61} />
             <span className={classes.item + " " + classes.text}>BATTERY</span>
             <span className={classes.item + " " + classes.number}>61%</span>

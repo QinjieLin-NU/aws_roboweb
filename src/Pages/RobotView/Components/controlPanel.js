@@ -45,7 +45,8 @@ const CustomButton = withStyles((theme) => ({
 
 function ControlPanel(props) {
     const classes = useStyles();
-    const [coordinate, setCoordinate] = useState([0, 0]);
+    const [coordinate1, setCoordinate1] = useState([0, 0]);
+    const [coordinate2, setCoordinate2] = useState([0, 0]);
     //  update = v => this.setState({ text: `X: ${v.intensity.x>0 ? '+':''}${(v.intensity.x*100).toFixed(0)}% | Y: ${v.intensity.y>0 ? '+':''}${(v.intensity.y*100).toFixed(0)}%` })
 
     return (
@@ -66,7 +67,7 @@ function ControlPanel(props) {
          borderWidth={5}
          borderColor="#d7eff5"
          knobColor="linear-gradient(to bottom, #18D2FF, #23869e)"
-         onActivity={setCoordinate}
+         onActivity={setCoordinate1}
      /></div>
        
        <div className="half">
@@ -76,7 +77,7 @@ function ControlPanel(props) {
          borderWidth={5}
          borderColor="#d7eff5"
          knobColor="linear-gradient(to bottom, #18D2FF, #23869e)"
-         onActivity={setCoordinate}
+         onActivity={setCoordinate2}
      /></div>
         </div>
         

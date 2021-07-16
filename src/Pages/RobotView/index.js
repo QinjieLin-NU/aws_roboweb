@@ -4,6 +4,7 @@ import video from './media/Video.jpeg';
 import MiniView from './Components/miniView';
 import BottomBar from "./Components/bottomBar";
 import ControlPanel from "./Components/controlPanel";
+import TopMenu from "./Components/topMenu";
 
 function RobotView() {
     return (
@@ -14,6 +15,7 @@ function RobotView() {
                 <MiniView src="view2"/>
             </div>
             <BottomBar/>
+            <TopMenu/>
             <ControlPanel/>
         </div>
     );

@@ -10,10 +10,10 @@ const useStyles = makeStyles((theme)=>({
         position: "fixed",
         bottom: "0",
         right: "0",
-        margin: "20px",
-        width: "20%",
+        margin: "30px",
+        width: "15%",
         height: "25%",
-        opacity: "0.6",
+        opacity: "0.8",
     },
     margin: {
         margin: theme.spacing(1),

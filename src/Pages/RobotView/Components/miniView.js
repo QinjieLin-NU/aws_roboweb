@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
     },
     image: {
         width: "70%",
+        borderRadius:"2px"
     },
     iconButton: {
         flex: "10%",
@@ -43,7 +44,8 @@ const useStyles = makeStyles(theme => ({
         padding: "2px",
         fontWeight: "bold",
         margin: "auto",
-        marginTop: "6%"
+        marginTop: "6%",
+        borderRadius:"2px"
     },
 }));
 

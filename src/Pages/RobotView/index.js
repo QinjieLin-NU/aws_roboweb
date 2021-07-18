@@ -5,6 +5,7 @@ import MiniView from './Components/miniView';
 import BottomBar from "./Components/bottomBar";
 import ControlPanel from "./Components/controlPanel";
 import TopMenu from "./Components/topMenu";
+import ExistButton from "./Components/ExistButton";
 
 function RobotView() {
     return (
@@ -17,6 +18,7 @@ function RobotView() {
             <BottomBar/>
             <TopMenu/>
             <ControlPanel/>
+            <ExistButton/>
         </div>
     );
 }

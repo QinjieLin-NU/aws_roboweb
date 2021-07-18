@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
         left: "0",
         top: "0",
         margin: "20px",
-        marginLeft:"40px",
+        marginLeft:"100px",
         background: "rgba(28, 30, 46, 0.6)",
         height: "30px",
         width:"120px",

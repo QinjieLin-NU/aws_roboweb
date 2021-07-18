@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         padding:"10px",
         width: "200px",
         borderRadius: "10px",
-        height: "230px",
+        height: "210px",
         background:"rgba(28, 30, 46, 0.3)"
     },
     margin: {
@@ -27,6 +27,17 @@ const useStyles = makeStyles((theme) => ({
     half: {
         flex: "50%",
         textAlign: "center"
+    },
+    volumeButton:{
+        color:theme.palette.text.primary,
+//        background:"rgba(28, 30, 46, 0.6)",
+        borderRadius:"50%"
+    },
+    slider:{
+        color:theme.palette.text.blue,
+        opacity:"0.7"
+ //       width:"100px"
+
     }
 }));
 
@@ -38,7 +49,7 @@ const CustomButton = withStyles((theme) => ({
         width: "200px",
         borderBottom: "3px solid",
         borderBottomColor: theme.palette.text.blue,
-        backgroundColor: "rgba(28, 30, 46, 0.6)",
+        backgroundColor: "rgba(28, 30, 46, 0.5)",
         '&:hover': {
             backgroundColor: theme.palette.background.default,
         },
@@ -72,9 +83,9 @@ function ControlPanel(props) {
                     <Joystick
                         width={90}
                         knobWidth={20}
-                        borderWidth={5}
-                        borderColor="#d7eff5"
-                        knobColor="linear-gradient(to bottom, #18D2FF, #23869e)"
+                        borderWidth={4}
+                        borderColor="rgba(215, 239, 245,0.5)"
+                        knobColor="rgba(28, 30, 46, 0.3)"
                         onActivity={setCoordinate1}
                     /></div>
 
@@ -82,25 +93,25 @@ function ControlPanel(props) {
                     <Joystick
                         width={90}
                         knobWidth={20}
-                        borderWidth={5}
-                        borderColor="#d7eff5"
-                        knobColor="linear-gradient(to bottom, #18D2FF, #23869e)"
+                        borderWidth={4}
+                        borderColor="rgba(215, 239, 245,0.5)"
+                        knobColor="rgba(28, 30, 46, 0.3)"
                         onActivity={setCoordinate2}
                     /></div>
             </div>
             <div className={classes.flex}>
-                <Grid container spacing={2}>
+                <Grid container spacing={1}>
                     <Grid item>
-                        <VolumeDown />
+                        <VolumeDown className={classes.volumeButton}/>
                     </Grid>
                     <Grid item xs>
-                        <Slider value={volume} onChange={handleChange} aria-labelledby="continuous-slider" />
+                        <Slider value={volume} onChange={handleChange} className={classes.slider} aria-labelledby="continuous-slider" />
                     </Grid>
                     <Grid item>
-                        <VolumeUp />
+                        <VolumeUp className={classes.volumeButton}/>
                     </Grid>
                 </Grid>
-
+                
             </div>
 
         </div>

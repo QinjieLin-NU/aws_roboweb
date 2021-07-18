@@ -32,7 +32,7 @@ class Joystick extends React.Component {
       dragging: false
     }
     this.properties = {
-      backgroundColor:props.color||'#1c1e2e',
+      backgroundColor:props.color||'rgba(28, 30, 46, 0.6)',
       knobColor:props.knobColor||'#bfbfbf',
       borderColor:props.borderColor||'#c5c5c5',
       knobBorderColor:props.knobBorderColor||'#ffffff',

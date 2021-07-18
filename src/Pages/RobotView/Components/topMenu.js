@@ -13,16 +13,15 @@ const useStyles = makeStyles(theme => ({
         top: "0",
         margin: "20px",
         marginLeft:"40px",
-        background: theme.palette.background.default,
+        background: "rgba(28, 30, 46, 0.6)",
         height: "30px",
         width:"120px",
         borderRadius:"15px",
-        opacity:"0.8",
         alignItems: "center",
         justifyContent:"center",
     },
     text:{
-        color:theme.palette.text.primary,
+        color:"#ffffff",
         fontWeight:"bold",
         fontSize:"13px",
         marginLeft:"5px"

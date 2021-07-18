@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
         zindex: "1"
     },
     image: {
-        width: "70%",
+        width: "200px",
         borderRadius:"2px"
     },
     iconButton: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.text.primary,
         borderStyle: "none",
         fontSize: "12px",
-        width: "70%",
+        width: "196px",
         paddingBottom: "2px",
         padding: "2px",
         fontWeight: "bold",

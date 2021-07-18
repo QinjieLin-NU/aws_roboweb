@@ -8,11 +8,12 @@ import view2 from '../media/view2.jpeg';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        zindex: "1"
+        zindex: "1",
+        opacity:"1"
     },
     image: {
         width: "200px",
-        borderRadius:"2px"
+        borderRadius:"0 0 5px 5px"
     },
     iconButton: {
         flex: "10%",
@@ -44,8 +45,7 @@ const useStyles = makeStyles(theme => ({
         padding: "2px",
         fontWeight: "bold",
         margin: "auto",
-        marginTop: "6%",
-        borderRadius:"2px"
+        borderRadius:"5px 5px 0 0",
     },
 }));
 

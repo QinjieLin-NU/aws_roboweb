@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Button, Grid, Slider } from "@material-ui/core";
 import { VolumeDown, VolumeUp } from "@material-ui/icons"
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { Viewer, Grid as rosGrid,UrdfClient } from 'ros3d'
+import { Viewer, Grid as rosGrid, UrdfClient } from 'ros3d';
+import {COLLADA_LOADER_2} from 'three-collada-loader-2';
 import ROSLIB from "roslib";
 import Joystick from "./joystick";
 
@@ -65,6 +66,7 @@ function ControlPanel(props) {
     const classes = useStyles();
     const [volume, setVolume] = React.useState(30);
     var ros;
+    var cmd_vel_listener;
     useEffect(() => {
         ros = new ROSLIB.Ros({
             // url : 'ws://192.168.50.4:9090'
@@ -83,23 +85,52 @@ function ControlPanel(props) {
         // Add a grid.
         viewer.addObject(new rosGrid());
 
-                // Setup a client to listen to TFs.
-                var tfClient = new ROSLIB.TFClient({
-                    ros: ros,
-                    angularThres: 0.01,
-                    transThres: 0.01,
-                    rate: 10.0
-                });
+        // Setup a client to listen to TFs.
+        var tfClient = new ROSLIB.TFClient({
+            ros: ros,
+            angularThres: 0.01,
+            transThres: 0.01,
+            rate: 10.0
+        });
 
-                // Setup the URDF client.
-                var urdfClient = new UrdfClient({
-                    ros: ros,
-                    tfClient: tfClient,
-                    // path : 'http://192.168.50.4:8001/',
-                    path: 'http://localhost:8003/',
-                    rootObject: viewer.scene,
-        //            loader: ROS3D.COLLADA_LOADER
-                });
+        // Setup the URDF client.
+        var urdfClient = new UrdfClient({
+            ros: ros,
+            tfClient: tfClient,
+            // path : 'http://192.168.50.4:8001/',
+            path: 'http://localhost:8003/',
+            rootObject: viewer.scene,
+            loader: COLLADA_LOADER_2
+        });
+        ros.on('connection', function () {
+            document.getElementById("status").innerHTML = "Connected";
+        });
+
+        ros.on('error', function (error) {
+            document.getElementById("status").innerHTML = "Error";
+        });
+
+        ros.on('close', function () {
+            document.getElementById("status").innerHTML = "Closed";
+        });
+
+        cmd_vel_listener = new ROSLIB.Topic({
+            ros: ros,
+            // name : "/navigation_velocity_smoother/raw_cmd_vel",
+            name: "/mobile_base/commands/velocity",
+            messageType: 'geometry_msgs/Twist'
+        });
+
+        var txt_listener = new ROSLIB.Topic({
+            ros : ros,
+            name : '/txt_msg',
+            messageType : 'std_msgs/String'
+          });
+
+        txt_listener.subscribe(function (m) {
+            document.getElementById("msg").innerHTML = m.data;
+            move(1, 0);
+        });
 
         getTopics();
 
@@ -133,15 +164,10 @@ function ControlPanel(props) {
         var linear_speed = Math.sin(radian) * max_linear * distance / max_distance;
         var angular_speed = -Math.cos(radian) * max_angular * distance / max_distance;
         console.log(linear_speed, angular_speed);
-        //move(linear_speed, angular_speed);
+        move(linear_speed, angular_speed);
     }
 
-    var cmd_vel_listener = new ROSLIB.Topic({
-        ros: ros,
-        // name : "/navigation_velocity_smoother/raw_cmd_vel",
-        name: "/mobile_base/commands/velocity",
-        messageType: 'geometry_msgs/Twist'
-    });
+
 
     const move = ({ linear, angular }) => {
         var twist = new ROSLIB.Message({
@@ -209,7 +235,8 @@ function ControlPanel(props) {
                 </Grid>
 
             </div>
-
+            <div id="msg"></div>
+            <div id="status"></div>
         </div>
     );
 }

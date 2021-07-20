@@ -15,6 +15,7 @@
     "react-scripts": "4.0.3",
     "ros3d": "^1.0.1",
     "roslib": "^1.1.0",
+    "three-collada-loader-2": "^1.0.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

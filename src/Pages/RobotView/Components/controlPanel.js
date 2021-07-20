@@ -134,7 +134,7 @@ function ControlPanel(props) {
 
         getTopics();
 
-    });
+    }, []);
 
 
     const getTopics = () => {

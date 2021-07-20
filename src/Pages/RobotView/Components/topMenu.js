@@ -35,7 +35,7 @@ function TopMenu() {
     return (
         <div className={classes.wrapper}>
         <SettingsInputAntennaRounded style={{ color: "#18d2ff" }}/>
-        <span className={classes.text}>Spot.003</span>
+        <span className={classes.text} id={"status"}></span>
 
         </div>
     );

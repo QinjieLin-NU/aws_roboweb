@@ -236,7 +236,6 @@ function ControlPanel(props) {
 
             </div>
             <div id="msg"></div>
-            <div id="status"></div>
         </div>
     );
 }

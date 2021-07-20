@@ -54,14 +54,14 @@ function MiniView(props) {
     return (
         <div className={classes.root}>
             <div className={classes.header}>
-                {props.src == "view1" ? <Map className={classes.icon} /> : <Image className={classes.icon} />}
-                <span className={classes.title}>{props.src == "view1" ? "gps" : "capture"}</span>
+                {props.src == "gps" ? <Map className={classes.icon} /> : <Image className={classes.icon} />}
+                <span className={classes.title}>{props.src == "gps" ? "gps" : "capture"}</span>
 
                 <IconButton aria-label="more" className={classes.iconButton}>
                     <MoreHoriz fontSize="small" />
                 </IconButton>
             </div>
-            <img src={props.src == "view1" ? view1 : view2} className={classes.image}></img>
+            <div id={props.src == "gps" ? "urdf" : "urdf"}  className={classes.image}></div>
         </div>
     );
 }

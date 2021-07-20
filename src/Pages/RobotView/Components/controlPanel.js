@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Button, Grid, Slider } from "@material-ui/core";
 import { VolumeDown, VolumeUp } from "@material-ui/icons"
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { ROS3D } from "@robot-web-tools/ros3djs";
-import { ROSLIB } from "roslib";
+import  ROS3D from "@robot-web-tools/ros3djs";
+import  ROSLIB  from "roslib";
 import Joystick from "./joystick";
 
 const useStyles = makeStyles((theme) => ({
@@ -63,9 +63,9 @@ function ControlPanel(props) {
     const [coordinate1, setCoordinate1] = useState([0, 0]);
     const [coordinate2, setCoordinate2] = useState([0, 0]);
     const [volume, setVolume] = React.useState(30);
-
+    var ros;
     useEffect(() => {
-        var ros = new ROSLIB.Ros({
+        ros = new ROSLIB.Ros({
             // url : 'ws://192.168.50.4:9090'
             url: 'ws://localhost:9091'
         });
@@ -74,8 +74,8 @@ function ControlPanel(props) {
         // Create the main viewer.
         var viewer = new ROS3D.Viewer({
             divID: 'urdf',
-            width: '300',
-            height: '300',
+            width: '200',
+            height: '200',
             antialias: true
         });
 
@@ -100,86 +100,10 @@ function ControlPanel(props) {
             loader: ROS3D.COLLADA_LOADER
         });
 
-
-        ros.on('connection', function () {
-            document.getElementById("status").innerHTML = "Connected";
-        });
-
-        ros.on('error', function (error) {
-            document.getElementById("status").innerHTML = "Error";
-        });
-
-        ros.on('close', function () {
-            document.getElementById("status").innerHTML = "Closed";
-        });
-
-        var txt_listener = new ROSLIB.Topic({
-            ros: ros,
-            name: '/txt_msg',
-            messageType: 'std_msgs/String'
-        });
-
-        txt_listener.subscribe(function (m) {
-            document.getElementById("msg").innerHTML = m.data;
-            move(1, 0);
-        });
-
-        cmd_vel_listener = new ROSLIB.Topic({
-            ros: ros,
-            // name : "/navigation_velocity_smoother/raw_cmd_vel",
-            name: "/mobile_base/commands/velocity",
-            messageType: 'geometry_msgs/Twist'
-        });
-
-        move = function (linear, angular) {
-            var twist = new ROSLIB.Message({
-                linear: {
-                    x: linear,
-                    y: 0,
-                    z: 0
-                },
-                angular: {
-                    x: 0,
-                    y: 0,
-                    z: angular
-                }
-            });
-            cmd_vel_listener.publish(twist);
-        }
-
-
-        createJoystick();
         getTopics();
 
     });
 
-    const createJoystick = () => {
-
-        linear_speed = 0;
-        angular_speed = 0;
-
-        self.manager.on('start', function (event, nipple) {
-            timer = setInterval(function () {
-                move(linear_speed, angular_speed);
-            }, 25);
-        });
-
-        self.manager.on('move', function (event, nipple) {
-            max_linear = 5.0; // m/s
-            max_angular = 2.0; // rad/s
-            max_distance = 75.0; // pixels;
-            linear_speed = Math.sin(nipple.angle.radian) * max_linear * nipple.distance / max_distance;
-            angular_speed = -Math.cos(nipple.angle.radian) * max_angular * nipple.distance / max_distance;
-        });
-
-        self.manager.on('end', function () {
-            if (timer) {
-                clearInterval(timer);
-            }
-            self.move(0, 0);
-        });
-
-    }
 
     const getTopics = () => {
         var topicsClient = new ROSLIB.Service({
@@ -203,10 +127,10 @@ function ControlPanel(props) {
         const max_distance = 75.0; // pixels;
         var x = position.x;
         var y = position.y;
-        var linear_speed = Math.sin(nipple.angle.radian) * max_linear * Math.pow() / max_distance;
-        var angular_speed = -Math.cos(nipple.angle.radian) * max_angular * nipple.distance / max_distance;
-
-
+        var radian = Math.arctan(y/x);
+        var distance = Math.pow(Math.pow(x,2)+  Math.pow(y,2),0.5);
+        var linear_speed = Math.sin(radian) * max_linear * distance/ max_distance;
+        var angular_speed = -Math.cos(radian) * max_angular * distance / max_distance;
     }
 
     const handleChange = (event, newValue) => {

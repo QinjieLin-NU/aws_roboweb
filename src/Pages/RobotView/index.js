@@ -12,8 +12,8 @@ function RobotView() {
         <div>
             <img src={video} className="fill-window"></img>
             <div className="view-wrapper">
-                <MiniView src="view1"/>
-                <MiniView src="view2"/>
+                <MiniView src="gps"/>
+                <MiniView src="capture"/>
             </div>
             <BottomBar/>
             <TopMenu/>

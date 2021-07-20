@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Button, Grid, Slider } from "@material-ui/core";
 import { VolumeDown, VolumeUp } from "@material-ui/icons"
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import  ROS3D from "@robot-web-tools/ros3djs";
-import  ROSLIB  from "roslib";
+import { Viewer, Grid as rosGrid,UrdfClient } from 'ros3d'
+import ROSLIB from "roslib";
 import Joystick from "./joystick";
+
+
+
 
 const useStyles = makeStyles((theme) => ({
     wrapper: {
@@ -60,8 +63,6 @@ const CustomButton = withStyles((theme) => ({
 
 function ControlPanel(props) {
     const classes = useStyles();
-    const [coordinate1, setCoordinate1] = useState([0, 0]);
-    const [coordinate2, setCoordinate2] = useState([0, 0]);
     const [volume, setVolume] = React.useState(30);
     var ros;
     useEffect(() => {
@@ -72,7 +73,7 @@ function ControlPanel(props) {
 
 
         // Create the main viewer.
-        var viewer = new ROS3D.Viewer({
+        var viewer = new Viewer({
             divID: 'urdf',
             width: '200',
             height: '200',
@@ -80,25 +81,25 @@ function ControlPanel(props) {
         });
 
         // Add a grid.
-        viewer.addObject(new ROS3D.Grid());
+        viewer.addObject(new rosGrid());
 
-        // Setup a client to listen to TFs.
-        var tfClient = new ROSLIB.TFClient({
-            ros: ros,
-            angularThres: 0.01,
-            transThres: 0.01,
-            rate: 10.0
-        });
+                // Setup a client to listen to TFs.
+                var tfClient = new ROSLIB.TFClient({
+                    ros: ros,
+                    angularThres: 0.01,
+                    transThres: 0.01,
+                    rate: 10.0
+                });
 
-        // Setup the URDF client.
-        var urdfClient = new ROS3D.UrdfClient({
-            ros: ros,
-            tfClient: tfClient,
-            // path : 'http://192.168.50.4:8001/',
-            path: 'http://localhost:8003/',
-            rootObject: viewer.scene,
-            loader: ROS3D.COLLADA_LOADER
-        });
+                // Setup the URDF client.
+                var urdfClient = new UrdfClient({
+                    ros: ros,
+                    tfClient: tfClient,
+                    // path : 'http://192.168.50.4:8001/',
+                    path: 'http://localhost:8003/',
+                    rootObject: viewer.scene,
+        //            loader: ROS3D.COLLADA_LOADER
+                });
 
         getTopics();
 
@@ -121,26 +122,50 @@ function ControlPanel(props) {
     };
 
     //this.onActivity({ position:{ x:0, y:0 }, intensity:{ x:0, y:0 } })
-    const onMove = ({position,intensity})=>{
+    const onMove = ({ position, intensity }) => {
         const max_linear = 5.0; // m/s
         const max_angular = 2.0; // rad/s
         const max_distance = 75.0; // pixels;
         var x = position.x;
         var y = position.y;
-        var radian = Math.arctan(y/x);
-        var distance = Math.pow(Math.pow(x,2)+  Math.pow(y,2),0.5);
-        var linear_speed = Math.sin(radian) * max_linear * distance/ max_distance;
+        var radian = Math.atan(y / x);
+        var distance = Math.pow(Math.pow(x, 2) + Math.pow(y, 2), 0.5);
+        var linear_speed = Math.sin(radian) * max_linear * distance / max_distance;
         var angular_speed = -Math.cos(radian) * max_angular * distance / max_distance;
+        console.log(linear_speed, angular_speed);
+        //move(linear_speed, angular_speed);
+    }
+
+    var cmd_vel_listener = new ROSLIB.Topic({
+        ros: ros,
+        // name : "/navigation_velocity_smoother/raw_cmd_vel",
+        name: "/mobile_base/commands/velocity",
+        messageType: 'geometry_msgs/Twist'
+    });
+
+    const move = ({ linear, angular }) => {
+        var twist = new ROSLIB.Message({
+            linear: {
+                x: linear,
+                y: 0,
+                z: 0
+            },
+            angular: {
+                x: 0,
+                y: 0,
+                z: angular
+            }
+        });
+        cmd_vel_listener.publish(twist);
     }
 
     const handleChange = (event, newValue) => {
         setVolume(newValue);
     };
-    // original set State function 
-    //  update = v => this.setState({ text: `X: ${v.intensity.x>0 ? '+':''}${(v.intensity.x*100).toFixed(0)}% | Y: ${v.intensity.y>0 ? '+':''}${(v.intensity.y*100).toFixed(0)}%` })
 
     return (
         <div className={classes.wrapper}>
+
             <div className={classes.flex}>
                 <CustomButton variant="contained" color="primary" className={classes.margin}>POSE</CustomButton>
                 <CustomButton variant="contained" color="primary" className={classes.margin}>SIT</CustomButton>
@@ -167,7 +192,7 @@ function ControlPanel(props) {
                         borderWidth={4}
                         borderColor="rgba(215, 239, 245,0.5)"
                         knobColor="rgba(28, 30, 46, 0.3)"
-                        onActivity={setCoordinate2}
+                        onActivity={onMove}
                     /></div>
             </div>
             <div className={classes.flex}>

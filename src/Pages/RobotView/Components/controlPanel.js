@@ -67,6 +67,10 @@ function ControlPanel(props) {
     const [volume, setVolume] = React.useState(30);
     var ros;
     var cmd_vel_listener;
+    var timer;
+    var linear_speed;
+    var angular_speed;
+
     useEffect(() => {
         ros = new ROSLIB.Ros({
             url : 'ws://192.168.50.4:9090'
@@ -133,6 +137,9 @@ function ControlPanel(props) {
         });
 
         getTopics();
+        timer = setInterval(function () {
+            move(linear_speed, angular_speed);
+          }, 25);
 
     }, []);
 
@@ -173,17 +180,17 @@ function ControlPanel(props) {
         
 
         // console.log(distance)
-        var linear_speed = Math.sin(radian) * max_linear * distance / max_distance;
-        var angular_speed = -Math.cos(radian) * max_angular * distance / max_distance;
+        linear_speed = Math.sin(radian) * max_linear * distance / max_distance;
+        angular_speed = -Math.cos(radian) * max_angular * distance / max_distance;
         console.log("radian"+radian)
-        console.log(linear_speed, angular_speed);
-        move(linear_speed, angular_speed);
+        //console.log(linear_speed, angular_speed);
+        // move(linear_speed, angular_speed);
         // await delay(25);
     }
 
 
 
-    const move = (linear_speed, angular_speed) => {
+    const move = () => {
         console.log(linear_speed, angular_speed);
         var twist = new ROSLIB.Message({
             linear: {

@@ -173,8 +173,14 @@ function ControlPanel(props) {
         var linear_speed = Math.sin(radian) * max_linear * distance / max_distance;
         var angular_speed = -Math.cos(radian) * max_angular * distance / max_distance;
         // console.log(linear_speed, angular_speed);
-        // move(linear_speed, angular_speed);
+        move(linear_speed, angular_speed);
+        // await delay(25);
+    }
 
+
+
+    const move = (linear_speed, angular_speed) => {
+        console.log(linear_speed, angular_speed);
         var twist = new ROSLIB.Message({
             linear: {
                 x: linear_speed,
@@ -190,26 +196,6 @@ function ControlPanel(props) {
         
         cmd_vel_listener.publish(twist);
     }
-
-
-
-    // const move = ({ linear_speed, angular_speed }) => {
-    //     console.log(linear_speed, angular_speed);
-    //     var twist = new ROSLIB.Message({
-    //         linear: {
-    //             x: linear_speed,
-    //             y: 0,
-    //             z: 0
-    //         },
-    //         angular: {
-    //             x: 0,
-    //             y: 0,
-    //             z: angular_speed
-    //         }
-    //     });
-        
-    //     cmd_vel_listener.publish(twist);
-    // }
 
     const handleChange = (event, newValue) => {
         setVolume(newValue);

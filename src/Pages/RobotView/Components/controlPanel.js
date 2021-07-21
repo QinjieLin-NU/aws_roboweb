@@ -69,8 +69,8 @@ function ControlPanel(props) {
     var cmd_vel_listener;
     useEffect(() => {
         ros = new ROSLIB.Ros({
-            // url : 'ws://192.168.50.4:9090'
-            url: 'ws://localhost:9091'
+            url : 'ws://192.168.50.4:9090'
+            // url: 'ws://localhost:9090'
         });
 
 
@@ -97,8 +97,8 @@ function ControlPanel(props) {
         var urdfClient = new UrdfClient({
             ros: ros,
             tfClient: tfClient,
-            // path : 'http://192.168.50.4:8001/',
-            path: 'http://localhost:8003/',
+            path : 'http://192.168.50.4:8002/',
+            // path: 'http://localhost:8002/',
             rootObject: viewer.scene,
             loader: COLLADA_LOADER_2
         });
@@ -116,8 +116,8 @@ function ControlPanel(props) {
 
         cmd_vel_listener = new ROSLIB.Topic({
             ros: ros,
-            // name : "/navigation_velocity_smoother/raw_cmd_vel",
-            name: "/mobile_base/commands/velocity",
+            name : "/navigation_velocity_smoother/raw_cmd_vel",
+            // name: "/mobile_base/commands/velocity",
             messageType: 'geometry_msgs/Twist'
         });
 
@@ -129,7 +129,7 @@ function ControlPanel(props) {
 
         txt_listener.subscribe(function (m) {
             document.getElementById("msg").innerHTML = m.data;
-            move(1, 0);
+            // move(1, 0);
         });
 
         getTopics();
@@ -154,36 +154,62 @@ function ControlPanel(props) {
 
     //this.onActivity({ position:{ x:0, y:0 }, intensity:{ x:0, y:0 } })
     const onMove = ({ position, intensity }) => {
-        const max_linear = 5.0; // m/s
+        const max_linear = 0.3; // m/s
         const max_angular = 2.0; // rad/s
         const max_distance = 75.0; // pixels;
         var x = position.x;
         var y = position.y;
-        var radian = Math.atan(y / x);
         var distance = Math.pow(Math.pow(x, 2) + Math.pow(y, 2), 0.5);
+        // first and second quadrant
+        if (y >0){
+            var radian = Math.asin(y / distance);
+        }
+        else {
+            var radian = Math.asin(-y / distance) + Math.pi;
+        }
+        
+
+        console.log(distance)
         var linear_speed = Math.sin(radian) * max_linear * distance / max_distance;
         var angular_speed = -Math.cos(radian) * max_angular * distance / max_distance;
-        console.log(linear_speed, angular_speed);
-        move(linear_speed, angular_speed);
-    }
+        // console.log(linear_speed, angular_speed);
+        // move(linear_speed, angular_speed);
 
-
-
-    const move = ({ linear, angular }) => {
         var twist = new ROSLIB.Message({
             linear: {
-                x: linear,
+                x: linear_speed,
                 y: 0,
                 z: 0
             },
             angular: {
                 x: 0,
                 y: 0,
-                z: angular
+                z: angular_speed
             }
         });
+        
         cmd_vel_listener.publish(twist);
     }
+
+
+
+    // const move = ({ linear_speed, angular_speed }) => {
+    //     console.log(linear_speed, angular_speed);
+    //     var twist = new ROSLIB.Message({
+    //         linear: {
+    //             x: linear_speed,
+    //             y: 0,
+    //             z: 0
+    //         },
+    //         angular: {
+    //             x: 0,
+    //             y: 0,
+    //             z: angular_speed
+    //         }
+    //     });
+        
+    //     cmd_vel_listener.publish(twist);
+    // }
 
     const handleChange = (event, newValue) => {
         setVolume(newValue);

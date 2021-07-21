@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import view1 from '../media/view1.jpeg';
 import view2 from '../media/view2.jpeg';
-// const depth_camera = "http://localhost:8080/stream?topic=/depth_to_rgb/image_raw"
+const depth_camera = "http://localhost:8080/stream?topic=/depth_to_rgb/image_raw"
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -50,15 +50,8 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const depth_camera = () => {
-	return ( 
-        <div id="depth_camera" className="shoe-container">
-            <img src="http://localhost:8080/stream?topic=/depth_to_rgb/image_raw" alt=""/>
-        </div>
-    );
-}
 
-function MiniView(props) {
+function MiniView_Image(props) {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -70,14 +63,16 @@ function MiniView(props) {
                     <MoreHoriz fontSize="small" />
                 </IconButton>
             </div>
-            {/* <img style="display: none" src={props.src=="depth camera"?depth_camera:"None"} className={classes.image}></img> */}
+            {/* <img src={props.src=="depth camera"?depth_camera:"None"} className={classes.image}></img> */}
+            <img src="http://192.168.50.4:8080/stream?topic=/depth_to_rgb/image_raw"
+ className={classes.image}></img>
             {/* <div id={props.src == "depth camera" ? "depth_camera" : "None"}  className={classes.image}></div> */}
-            <div id={props.src == "model" ? "urdf" : "None"}  className={classes.image}></div>
+            {/* <div id={props.src == "model" ? "urdf" : "None"}  className={classes.image}></div> */}
             
         </div>
     );
 }
 
-export default MiniView;
+export default MiniView_Image;
 
 

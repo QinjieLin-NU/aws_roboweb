@@ -158,8 +158,8 @@ function ControlPanel(props) {
 
         cmd_vel_listener = new ROSLIB.Topic({
             ros: ros,
-            name : "/navigation_velocity_smoother/raw_cmd_vel",
-            // name: "/mobile_base/commands/velocity",
+            // name : "/navigation_velocity_smoother/raw_cmd_vel",
+            name: "/mobile_base/commands/velocity",
             messageType: 'geometry_msgs/Twist'
         });
 

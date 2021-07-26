@@ -14,7 +14,7 @@ function RobotView() {
         <div>
             {/* <img src={video} className="fill-window"></img> */}
             {/* <Image src="http://192.168.50.4:8080/stream?topic=/rgb/image_raw" className="fill-window" layout="fill"></Image> */}
-            {/* <img src="http://192.168.50.4:8080/stream?topic=/rgb/image_raw" className="fill-window" ></img> */}
+            <img src="http://192.168.50.4:8080/stream?topic=/rgb/image_raw" className="fill-window" ></img>
             <div className="view-wrapper">
                 <MiniView_Image src="depth camera"/>
                 <MiniView_Pointcloud src="pointcloud"/>

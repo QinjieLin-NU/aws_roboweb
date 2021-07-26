@@ -175,9 +175,6 @@ function ControlPanel(props) {
         });
 
         getTopics();
-        timer = setInterval(function () {
-            move(linear_speed, angular_speed);
-          }, 25);
 
     }, []);
 
@@ -199,6 +196,9 @@ function ControlPanel(props) {
 
     //this.onActivity({ position:{ x:0, y:0 }, intensity:{ x:0, y:0 } })
     const onMove = ({ position, intensity }) => {
+        timer = setInterval(function () {
+            move(linear_speed, angular_speed);
+          }, 25);
         const max_linear = 0.3; // m/s
         const max_angular = 4.0; // rad/s
         const max_distance = 75.0; // pixels;
@@ -223,7 +223,7 @@ function ControlPanel(props) {
         console.log("radian"+radian)
         //console.log(linear_speed, angular_speed);
         // move(linear_speed, angular_speed);
-        // await delay(25);
+        clearInterval(timer);
     }
 
 

@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Button, Grid, Slider } from "@material-ui/core";
 import { VolumeDown, VolumeUp } from "@material-ui/icons"
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { Viewer, Grid as rosGrid, UrdfClient } from 'ros3d';
+import { Viewer, Grid as rosGrid, UrdfClient, PointCloud2 } from 'ros3d';
+// import { Grid as UrdfClient } from 'ros3d';
 import {COLLADA_LOADER_2} from 'three-collada-loader-2';
 import ROSLIB from "roslib";
+// import PointCloud2 from "ros3djs";
+// import {Viewer, PointCloud2} from 'ros3d';
 import Joystick from "./joystick";
 
 
@@ -73,8 +76,8 @@ function ControlPanel(props) {
 
     useEffect(() => {
         ros = new ROSLIB.Ros({
-            url : 'ws://192.168.50.4:9090'
-            // url: 'ws://localhost:9090'
+            // url : 'ws://192.168.50.4:9090'
+            url: 'ws://localhost:9090'
         });
 
 
@@ -88,6 +91,7 @@ function ControlPanel(props) {
 
         // Add a grid.
         viewer.addObject(new rosGrid());
+        // viewer.addObject(new Viewer());
 
         // Setup a client to listen to TFs.
         var tfClient = new ROSLIB.TFClient({
@@ -106,6 +110,40 @@ function ControlPanel(props) {
             rootObject: viewer.scene,
             loader: COLLADA_LOADER_2
         });
+
+        // Setup a client to listen to TFs.
+        var pointCloudTfClient = new ROSLIB.TFClient({
+        ros : ros,
+        angularThres : 0.01,
+        transThres : 0.01,
+        rate : 10.0,
+        fixedFrame : '/camera_link'
+        });
+
+        // create pointcloud viewer
+        var pointCloudViewer = new Viewer({
+            divID: 'pointcloud',
+            width: '200',
+            height: '200',
+            antialias: true
+        });
+
+        var tmpSub = new PointCloud2({
+            ros:ros,
+            tfClient: pointCloudTfClient, 
+            rootObject: pointCloudViewer.scene,
+            topic: '/points2',
+           //  material: {size: 0.01, color: 0xeeeeee },
+            material: {size: 0.01},
+            colorsrc: 'rgb',
+            
+            max_pts: 5000000 // 5 million points
+         });
+
+        function displayCloud(msg){
+            tmpSub.processMessage(msg);
+          }
+
         ros.on('connection', function () {
             document.getElementById("status").innerHTML = "Connected";
         });

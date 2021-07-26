@@ -196,9 +196,9 @@ function ControlPanel(props) {
 
     //this.onActivity({ position:{ x:0, y:0 }, intensity:{ x:0, y:0 } })
     const onMove = ({ position, intensity }) => {
-        timer = setInterval(function () {
-            move(linear_speed, angular_speed);
-          }, 25);
+        // timer = setInterval(function () {
+        //     move(linear_speed, angular_speed);
+        //   }, 25);
         const max_linear = 0.3; // m/s
         const max_angular = 4.0; // rad/s
         const max_distance = 75.0; // pixels;
@@ -206,13 +206,13 @@ function ControlPanel(props) {
         var y = position.y;
         var distance = Math.pow(Math.pow(x, 2) + Math.pow(y, 2), 0.5);
         // first and second quadrant
-        console.log("y"+y);
-        console.log("distance"+distance);
+        // console.log("y"+y);
+        // console.log("distance"+distance);
         if (y >0){
             var radian = Math.asin(y / distance);
         }
         else {
-            console.log("Math.asin(-y / distance)"+Math.asin(-y / distance))
+            // console.log("Math.asin(-y / distance)"+Math.asin(-y / distance))
             var radian = Math.asin(-y / distance) + Math.PI;
         }
         
@@ -220,10 +220,11 @@ function ControlPanel(props) {
         // console.log(distance)
         linear_speed = Math.sin(radian) * max_linear * distance / max_distance;
         angular_speed = -Math.cos(radian) * max_angular * distance / max_distance;
-        console.log("radian"+radian)
+        // console.log("radian"+radian)
         //console.log(linear_speed, angular_speed);
         // move(linear_speed, angular_speed);
-        clearInterval(timer);
+        // clearInterval(timer);
+        move()
     }
 
 

@@ -10,7 +10,39 @@ const useStyles = makeStyles(theme => ({
         },
         marginLeft:"20px",
         sizeSmall:"15px"
-    }
+    },
+    iconButton: {
+        flex: "10%",
+        fontSize: "17px",
+        color: theme.palette.text.primary,
+        height: "7px",
+    },
+    icon:{
+        flex: "10%",
+        fontSize: "17px",
+        color: theme.palette.text.primary,
+        paddingTop:"2px",
+    },
+    title: {
+        flex: "80%",
+        paddingTop:"2px",
+        paddingLeft:"2px"
+    },
+    header: {
+        display: "flex",
+        padding: theme.spacing(0.1),
+        textAlign: "left",
+        background: theme.palette.background.default,
+        color: theme.palette.text.primary,
+        borderStyle: "none",
+        fontSize: "12px",
+        width: "80%",
+        paddingBottom: "2px",
+        padding: "2px",
+        fontWeight: "bold",
+        margin: "auto",
+        borderRadius:"5px 5px 0 0",
+    },
   }));
 
 function Observe() {
@@ -26,6 +58,20 @@ function Observe() {
                 <IconButton aria-controls="simple-menu" aria-haspopup="true" size="small" className={classes.button}>
                     <MoreHoriz  />
                 </IconButton>
+            </div>
+            <div className="grid">
+                <div className="row">
+                    <div className="top-1"></div>
+                    <div className="top-2"></div>
+                    <div className="top-3"></div>
+                </div>
+                <div className="row">
+                    <div className="bottom-1"></div>
+                    <div className="bottom-2"></div>
+                    <div className="bottom-3"></div>
+                    <div className="bottom-4"></div>       
+                </div>
+            
             </div>
         </div>
     );

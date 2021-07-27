@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleMenu() {
+export default function SimpleMenu(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -30,6 +30,14 @@ export default function SimpleMenu() {
   };
 
   const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const openControl = () => {
+    props.changeView(0);
+    setAnchorEl(null);
+  };
+  const openObserve = () => {
+    props.changeView(1);
     setAnchorEl(null);
   };
 
@@ -46,9 +54,8 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={openControl}>Robot Control</MenuItem>
+        <MenuItem onClick={openObserve}>Observe</MenuItem>
       </Menu>
     </div>
   );

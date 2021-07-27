@@ -3,6 +3,8 @@ import { MoreHoriz, FilterList, Map } from "@material-ui/icons"
 import { IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import image from "./../RobotView/media/Video.jpeg";
+import image1 from "./../RobotView/media/view1.jpeg";
+import image2 from "./../RobotView/media/view2.jpeg";
 import LineChart1 from "./Components/LineChart1";
 import LineChart2 from "./Components/LineChart2";
 const useStyles = makeStyles(theme => ({
@@ -29,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     title: {
         flex: "80%",
         paddingTop: "2px",
-        paddingLeft: "2px"
+//        paddingLeft: "2px"
     },
     header: {
         display: "flex",
@@ -72,13 +74,13 @@ function Observe() {
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
                         </div>
-                        <img src={image} className="content"></img>
+                        <img src={image1} className="content"></img>
 
                     </div>
                     <div className="top-2">
                         <div className={classes.header}>
                             <Map className={classes.icon} />
-                            <span className={classes.title}>observation cam</span>
+                            <span className={classes.title}>Joint 1 position</span>
                             <IconButton aria-label="more" className={classes.iconButton}>
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
@@ -90,7 +92,7 @@ function Observe() {
                     <div className="top-3">
                         <div className={classes.header}>
                             <Map className={classes.icon} />
-                            <span className={classes.title}>observation cam</span>
+                            <span className={classes.title}>Joint 2 position</span>
                             <IconButton aria-label="more" className={classes.iconButton}>
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
@@ -105,25 +107,39 @@ function Observe() {
                     <div className="bottom-1">
                         <div className={classes.header}>
                             <Map className={classes.icon} />
-                            <span className={classes.title}>observation cam</span>
+                            <span className={classes.title}>Lidar.reduced</span>
                             <IconButton aria-label="more" className={classes.iconButton}>
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
                         </div>
+                        <img src={image2} className="content"></img>
                     </div>
                     <div className="bottom-2">
                         <div className={classes.header}>
                             <Map className={classes.icon} />
-                            <span className={classes.title}>observation cam</span>
+                            <span className={classes.title}>fsdp.numeric.1</span>
                             <IconButton aria-label="more" className={classes.iconButton}>
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
+                        </div>
+                        <div className="chart-wrapper-small">
+                        <LineChart1  />
+                        </div>
+                        <div className={classes.header}>
+                            <Map className={classes.icon} />
+                            <span className={classes.title}>fsdp.numeric.2</span>
+                            <IconButton aria-label="more" className={classes.iconButton}>
+                                <MoreHoriz fontSize="small" />
+                            </IconButton>
+                        </div>
+                        <div className="chart-wrapper-small">
+                        <LineChart1  />
                         </div>
                     </div>
                     <div className="bottom-3">
                         <div className={classes.header}>
                             <Map className={classes.icon} />
-                            <span className={classes.title}>observation cam</span>
+                            <span className={classes.title}>Job.lot</span>
                             <IconButton aria-label="more" className={classes.iconButton}>
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
@@ -133,10 +149,13 @@ function Observe() {
                     <div className="bottom-4">
                         <div className={classes.header}>
                             <Map className={classes.icon} />
-                            <span className={classes.title}>observation cam</span>
+                            <span className={classes.title}>Capture</span>
                             <IconButton aria-label="more" className={classes.iconButton}>
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
+                        </div>
+                        <div className="chart-wrapper">
+                        <LineChart1  />
                         </div>
                     </div>
                 </div>

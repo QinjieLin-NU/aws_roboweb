@@ -3,6 +3,8 @@ import { MoreHoriz, FilterList, Map } from "@material-ui/icons"
 import { IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import image from "./../RobotView/media/Video.jpeg";
+import LineChart1 from "./Components/LineChart1";
+import LineChart2 from "./Components/LineChart2";
 const useStyles = makeStyles(theme => ({
     button: {
         background: theme.palette.background.default2,
@@ -81,6 +83,9 @@ function Observe() {
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
                         </div>
+                        <div className="chart-wrapper">
+                        <LineChart1  />
+                        </div>
                     </div>
                     <div className="top-3">
                         <div className={classes.header}>
@@ -90,6 +95,10 @@ function Observe() {
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
                         </div>
+                        <div className="chart-wrapper">
+                        <LineChart2  />
+                        </div>
+                        
                     </div>
                 </div>
                 <div className="row">

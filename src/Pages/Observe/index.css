@@ -65,11 +65,13 @@
 .top-2{
     flex:20%;
     height:100%;
+    margin-left: 1%;
 
 }
 .top-3{
     flex:20%;
     height:100%;
+    margin-left: 1%;
 
 }
 .bottom-1{
@@ -91,4 +93,11 @@
 .content{
     height:90%;
     width:100%;
+}
+
+.chart-wrapper{
+    height:70%;
+    background-color: #2f3752;
+    border-radius:0 0 7px 7px;
+    padding:5%;
 }

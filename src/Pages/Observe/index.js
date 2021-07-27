@@ -133,7 +133,7 @@ function Observe() {
                             </IconButton>
                         </div>
                         <div className="chart-wrapper-small">
-                        <LineChart1  />
+                        <LineChart2  />
                         </div>
                     </div>
                     <div className="bottom-3">

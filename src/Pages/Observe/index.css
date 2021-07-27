@@ -60,38 +60,35 @@
 .top-1{
     flex:40%;
     height:100%;
-    background-color: #ffffff;
 
 }
 .top-2{
     flex:20%;
     height:100%;
-    background-color: #ffffff;
 
 }
 .top-3{
     flex:20%;
     height:100%;
-    background-color: #ffffff;
 
 }
 .bottom-1{
     flex:20%;
     height:100%;
-    background-color: #ffffff;
 }
 .bottom-2{
     flex:15%;
     height:100%;
-    background-color: #ffffff;
 }
 .bottom-3{
     flex:35%;
     height:100%;
-    background-color: #ffffff;
 }
 .bottom-4{
     flex:30%;
     height:100%;
-    background-color: #ffffff;
+}
+.content{
+    height:90%;
+    width:100%;
 }

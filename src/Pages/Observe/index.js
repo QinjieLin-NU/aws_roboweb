@@ -1,15 +1,16 @@
 import './index.css';
-import { MoreHoriz,FilterList } from "@material-ui/icons"
+import { MoreHoriz, FilterList, Map } from "@material-ui/icons"
 import { IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import image from "./../RobotView/media/Video.jpeg";
 const useStyles = makeStyles(theme => ({
     button: {
         background: theme.palette.background.default2,
         '&:hover': {
-          background: theme.palette.background.default1,
+            background: theme.palette.background.default1,
         },
-        marginLeft:"20px",
-        sizeSmall:"15px"
+        marginLeft: "20px",
+        sizeSmall: "15px"
     },
     iconButton: {
         flex: "10%",
@@ -17,16 +18,16 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.text.primary,
         height: "7px",
     },
-    icon:{
+    icon: {
         flex: "10%",
         fontSize: "17px",
         color: theme.palette.text.primary,
-        paddingTop:"2px",
+        paddingTop: "2px",
     },
     title: {
         flex: "80%",
-        paddingTop:"2px",
-        paddingLeft:"2px"
+        paddingTop: "2px",
+        paddingLeft: "2px"
     },
     header: {
         display: "flex",
@@ -36,14 +37,14 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.text.primary,
         borderStyle: "none",
         fontSize: "12px",
-        width: "80%",
+        width: "100%",
         paddingBottom: "2px",
         padding: "2px",
         fontWeight: "bold",
         margin: "auto",
-        borderRadius:"5px 5px 0 0",
+        borderRadius: "5px 5px 0 0",
     },
-  }));
+}));
 
 function Observe() {
     const classes = useStyles();
@@ -53,25 +54,84 @@ function Observe() {
             <div className="top-label">spot.003</div>
             <div className="top-button-wrapper">
                 <IconButton aria-controls="simple-menu" aria-haspopup="true" size="small" className={classes.button}>
-                    <FilterList  />
+                    <FilterList />
                 </IconButton>
                 <IconButton aria-controls="simple-menu" aria-haspopup="true" size="small" className={classes.button}>
-                    <MoreHoriz  />
+                    <MoreHoriz />
                 </IconButton>
             </div>
             <div className="grid">
                 <div className="row">
-                    <div className="top-1"></div>
-                    <div className="top-2"></div>
-                    <div className="top-3"></div>
+                    <div className="top-1">
+                        <div className={classes.header}>
+                            <Map className={classes.icon} />
+                            <span className={classes.title}>observation cam</span>
+                            <IconButton aria-label="more" className={classes.iconButton}>
+                                <MoreHoriz fontSize="small" />
+                            </IconButton>
+                        </div>
+                        <img src={image} className="content"></img>
+
+                    </div>
+                    <div className="top-2">
+                        <div className={classes.header}>
+                            <Map className={classes.icon} />
+                            <span className={classes.title}>observation cam</span>
+                            <IconButton aria-label="more" className={classes.iconButton}>
+                                <MoreHoriz fontSize="small" />
+                            </IconButton>
+                        </div>
+                    </div>
+                    <div className="top-3">
+                        <div className={classes.header}>
+                            <Map className={classes.icon} />
+                            <span className={classes.title}>observation cam</span>
+                            <IconButton aria-label="more" className={classes.iconButton}>
+                                <MoreHoriz fontSize="small" />
+                            </IconButton>
+                        </div>
+                    </div>
                 </div>
                 <div className="row">
-                    <div className="bottom-1"></div>
-                    <div className="bottom-2"></div>
-                    <div className="bottom-3"></div>
-                    <div className="bottom-4"></div>       
+                    <div className="bottom-1">
+                        <div className={classes.header}>
+                            <Map className={classes.icon} />
+                            <span className={classes.title}>observation cam</span>
+                            <IconButton aria-label="more" className={classes.iconButton}>
+                                <MoreHoriz fontSize="small" />
+                            </IconButton>
+                        </div>
+                    </div>
+                    <div className="bottom-2">
+                        <div className={classes.header}>
+                            <Map className={classes.icon} />
+                            <span className={classes.title}>observation cam</span>
+                            <IconButton aria-label="more" className={classes.iconButton}>
+                                <MoreHoriz fontSize="small" />
+                            </IconButton>
+                        </div>
+                    </div>
+                    <div className="bottom-3">
+                        <div className={classes.header}>
+                            <Map className={classes.icon} />
+                            <span className={classes.title}>observation cam</span>
+                            <IconButton aria-label="more" className={classes.iconButton}>
+                                <MoreHoriz fontSize="small" />
+                            </IconButton>
+                        </div>
+                        <img src={image} className="content"></img>
+                    </div>
+                    <div className="bottom-4">
+                        <div className={classes.header}>
+                            <Map className={classes.icon} />
+                            <span className={classes.title}>observation cam</span>
+                            <IconButton aria-label="more" className={classes.iconButton}>
+                                <MoreHoriz fontSize="small" />
+                            </IconButton>
+                        </div>
+                    </div>
                 </div>
-            
+
             </div>
         </div>
     );

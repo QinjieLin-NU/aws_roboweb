@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
       marginLeft:"40px",
       background: "rgba(28, 30, 46, 0.6)",
       '&:hover': {
-        background: theme.palette.background.default,
+        background: theme.palette.background.default2,
     },
   },
 }));

@@ -27,3 +27,12 @@
     margin-top: 23px;
     margin-left:100px;
 }
+
+.top-button-wrapper{
+    position:fixed;
+    top:0;
+    right:0;
+    margin:20px;
+    margin-top:14px;
+    display: flex;
+}

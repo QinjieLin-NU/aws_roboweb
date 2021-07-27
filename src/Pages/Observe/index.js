@@ -4,10 +4,12 @@ import { IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(theme => ({
     button: {
-        background: theme.palette.text.default1,
+        background: theme.palette.background.default2,
         '&:hover': {
-          background: theme.palette.background.default2,
-      },
+          background: theme.palette.background.default1,
+        },
+        marginLeft:"20px",
+        sizeSmall:"15px"
     }
   }));
 
@@ -18,11 +20,11 @@ function Observe() {
             <div className="leftBlue"></div>
             <div className="top-label">spot.003</div>
             <div className="top-button-wrapper">
-                <IconButton aria-controls="simple-menu" aria-haspopup="true" className={classes.button}>
-                    <MoreHoriz fontSize="small" />
+                <IconButton aria-controls="simple-menu" aria-haspopup="true" size="small" className={classes.button}>
+                    <FilterList  />
                 </IconButton>
-                <IconButton aria-controls="simple-menu" aria-haspopup="true" className={classes.button}>
-                    <FilterList fontSize="small" />
+                <IconButton aria-controls="simple-menu" aria-haspopup="true" size="small" className={classes.button}>
+                    <MoreHoriz  />
                 </IconButton>
             </div>
         </div>

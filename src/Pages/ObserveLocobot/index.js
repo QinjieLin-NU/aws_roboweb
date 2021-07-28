@@ -6,6 +6,12 @@ import image from "./../OperatorLocobot/media/Video.jpeg";
 import image1 from "./../OperatorLocobot/media/view1.jpeg";
 import image2 from "./../OperatorLocobot/media/view2.jpeg";
 // import ControlPanel from "./Components/controlPanel";
+import AngleChart_waist_shoulder from './Components/AngleChart_waist_shoulder';
+import AngleChart_elbow_gripper from './Components/AngleChart_elbow_gripper';
+import AngleChart_wrist_angle_rotate from './Components/AngleChart_wrist_angle_rotate';
+import AngleChart_left_finger from './Components/AngleChart_left_finger';
+import AngleChart_right_finger from './Components/AngleChart_right_finger';
+
 import MiniView_Urdf from './Components/miniView_urdf';
 import MiniView_Pointcloud from './Components/miniView_pointcloud';
 import LineChart1 from "./Components/LineChart1";
@@ -89,7 +95,8 @@ function ObserveLocobot() {
                             </IconButton>
                         </div>
                         <div className="chart-wrapper">
-                        <LineChart1  />
+                        {/* <LineChart1  /> */}
+                        <AngleChart_waist_shoulder/>
                         </div>
                     </div>
                     <div className="top-3">
@@ -101,7 +108,8 @@ function ObserveLocobot() {
                             </IconButton>
                         </div>
                         <div className="chart-wrapper">
-                        <LineChart2  />
+                        {/* <LineChart2  /> */}
+                        <AngleChart_elbow_gripper />
                         </div>
                         
                     </div>
@@ -127,7 +135,8 @@ function ObserveLocobot() {
                             </IconButton>
                         </div>
                         <div className="chart-wrapper-small">
-                        <LineChart1  />
+                        {/* <LineChart1  /> */}
+                        <AngleChart_left_finger />
                         </div>
                         <div className={classes.header}>
                             <Map className={classes.icon} />
@@ -137,7 +146,8 @@ function ObserveLocobot() {
                             </IconButton>
                         </div>
                         <div className="chart-wrapper-small">
-                        <LineChart2  />
+                        {/* <LineChart2  /> */}
+                        <AngleChart_right_finger />
                         </div>
                     </div>
                     <div className="bottom-3">
@@ -163,7 +173,8 @@ function ObserveLocobot() {
                             </IconButton>
                         </div>
                         <div className="chart-wrapper">
-                        <LineChart1  />
+                        {/* <LineChart1  /> */}\
+                        <AngleChart_wrist_angle_rotate />
                         </div>
                     </div>
                 </div>

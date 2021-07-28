@@ -54,13 +54,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const depth_camera = () => {
-	return ( 
-        <div id="depth_camera" className="shoe-container">
-            <img src="http://localhost:8080/stream?topic=/depth_to_rgb/image_raw" alt=""/>
-        </div>
-    );
-}
 
 
 
@@ -70,8 +63,8 @@ function MiniView_Urdf(props) {
 
     useEffect(() => {
     ros = new ROSLIB.Ros({
-        // url : 'ws://192.168.50.4:9090'
-        url: 'ws://localhost:9090'
+        url : 'ws://192.168.50.4:9090'
+        // url: 'ws://localhost:9090'
     })
     // Create the main viewer.
     var viewer = new Viewer({

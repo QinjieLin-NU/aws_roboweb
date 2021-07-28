@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     title: {
         flex: "80%",
         paddingTop: "2px",
-//        paddingLeft: "2px"
+        //        paddingLeft: "2px"
     },
     header: {
         display: "flex",
@@ -85,30 +85,56 @@ function ObserveSpot() {
 
                     </div>
                     <div className="top-2">
-                        <div className={classes.header}>
-                            <Map className={classes.icon} />
-                            <span className={classes.title}>Joint 1 position</span>
-                            <IconButton aria-label="more" className={classes.iconButton}>
-                                <MoreHoriz fontSize="small" />
-                            </IconButton>
+                        <div className="vertical-half">
+                            <div className={classes.header}>
+                                <Map className={classes.icon} />
+                                <span className={classes.title}>joint.position.3</span>
+                                <IconButton aria-label="more" className={classes.iconButton}>
+                                    <MoreHoriz fontSize="small" />
+                                </IconButton>
+                            </div>
+                            <div className="chart-wrapper">
+                                <LineChart1 />
+                            </div>
                         </div>
-                        <div className="chart-wrapper">
-                        {/* <LineChart1  /> */}
-                        <AngleChart/>
+                        <div className="vertical-half">
+                            <div className={classes.header}>
+                                <Map className={classes.icon} />
+                                <span className={classes.title}>joint.position.4</span>
+                                <IconButton aria-label="more" className={classes.iconButton}>
+                                    <MoreHoriz fontSize="small" />
+                                </IconButton>
+                            </div>
+                            <div className="chart-wrapper">
+                                <LineChart2 />
+                            </div>
                         </div>
                     </div>
                     <div className="top-3">
-                        <div className={classes.header}>
-                            <Map className={classes.icon} />
-                            <span className={classes.title}>Joint 2 position</span>
-                            <IconButton aria-label="more" className={classes.iconButton}>
-                                <MoreHoriz fontSize="small" />
-                            </IconButton>
+                        <div className="vertical-half">
+                            <div className={classes.header}>
+                                <Map className={classes.icon} />
+                                <span className={classes.title}>joint.position.3</span>
+                                <IconButton aria-label="more" className={classes.iconButton}>
+                                    <MoreHoriz fontSize="small" />
+                                </IconButton>
+                            </div>
+                            <div className="chart-wrapper">
+                                <LineChart1 />
+                            </div>
                         </div>
-                        <div className="chart-wrapper">
-                        <LineChart2  />
+                        <div className="vertical-half">
+                            <div className={classes.header}>
+                                <Map className={classes.icon} />
+                                <span className={classes.title}>joint.position.4</span>
+                                <IconButton aria-label="more" className={classes.iconButton}>
+                                    <MoreHoriz fontSize="small" />
+                                </IconButton>
+                            </div>
+                            <div className="chart-wrapper">
+                                <LineChart2 />
+                            </div>
                         </div>
-                        
                     </div>
                 </div>
                 <div className="row">
@@ -124,25 +150,29 @@ function ObserveSpot() {
                         {/* <div className="content"> <LidarView /> </div> */}
                     </div>
                     <div className="bottom-2">
-                        <div className={classes.header}>
-                            <Map className={classes.icon} />
-                            <span className={classes.title}>fsdp.numeric.1</span>
-                            <IconButton aria-label="more" className={classes.iconButton}>
-                                <MoreHoriz fontSize="small" />
-                            </IconButton>
+                        <div className="vertical-half">
+                            <div className={classes.header}>
+                                <Map className={classes.icon} />
+                                <span className={classes.title}>fsdp.numeric.1</span>
+                                <IconButton aria-label="more" className={classes.iconButton}>
+                                    <MoreHoriz fontSize="small" />
+                                </IconButton>
+                            </div>
+                            <div className="chart-wrapper">
+                                <LineChart1 />
+                            </div>
                         </div>
-                        <div className="chart-wrapper-small">
-                        <LineChart1  />
-                        </div>
-                        <div className={classes.header}>
-                            <Map className={classes.icon} />
-                            <span className={classes.title}>fsdp.numeric.2</span>
-                            <IconButton aria-label="more" className={classes.iconButton}>
-                                <MoreHoriz fontSize="small" />
-                            </IconButton>
-                        </div>
-                        <div className="chart-wrapper-small">
-                        <LineChart2  />
+                        <div className="vertical-half">
+                            <div className={classes.header}>
+                                <Map className={classes.icon} />
+                                <span className={classes.title}>fsdp.numeric.2</span>
+                                <IconButton aria-label="more" className={classes.iconButton}>
+                                    <MoreHoriz fontSize="small" />
+                                </IconButton>
+                            </div>
+                            <div className="chart-wrapper">
+                                <LineChart2 />
+                            </div>
                         </div>
                     </div>
                     <div className="bottom-3">
@@ -157,15 +187,43 @@ function ObserveSpot() {
                         {/* <div className="content"> <MapView /> </div> */}
                     </div>
                     <div className="bottom-4">
-                        <div className={classes.header}>
-                            <Map className={classes.icon} />
-                            <span className={classes.title}>Capture</span>
-                            <IconButton aria-label="more" className={classes.iconButton}>
-                                <MoreHoriz fontSize="small" />
-                            </IconButton>
+                        <div className="vertical-half">
+                            <div className={classes.header}>
+                                <Map className={classes.icon} />
+                                <span className={classes.title}>Capture</span>
+                                <IconButton aria-label="more" className={classes.iconButton}>
+                                    <MoreHoriz fontSize="small" />
+                                </IconButton>
+                            </div>
+                            <img src={image} className="content-half"></img>
                         </div>
-                        <div className="chart-wrapper">
-                        <LineChart1  />
+                        <div className="vertical-half">
+                            <div className="row-small">
+                                <div className="container-left">
+                                    <div className={classes.header}>
+                                        <Map className={classes.icon} />
+                                        <span className={classes.title}>joint.position.4</span>
+                                        <IconButton aria-label="more" className={classes.iconButton}>
+                                            <MoreHoriz fontSize="small" />
+                                        </IconButton>
+                                    </div>
+                                    <div className="chart-wrapper">
+                                        <LineChart2 />
+                                    </div>
+                                </div>
+                                <div className="container-right">
+                                    <div className={classes.header}>
+                                        <Map className={classes.icon} />
+                                        <span className={classes.title}>joint.position.4</span>
+                                        <IconButton aria-label="more" className={classes.iconButton}>
+                                            <MoreHoriz fontSize="small" />
+                                        </IconButton>
+                                    </div>
+                                    <div className="chart-wrapper">
+                                        <LineChart2 />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

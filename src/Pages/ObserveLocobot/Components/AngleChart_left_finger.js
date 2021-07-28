@@ -87,8 +87,8 @@ function AngleChart_left_finger(props) {
                     color: "#000000",
                     borderColor: "#BAC4E2"
                 },
-                max : 1.,    
-                min : -1.,
+                max : 0.04,    
+                min : -0.04,
             },
             x: {
                 type: 'realtime',

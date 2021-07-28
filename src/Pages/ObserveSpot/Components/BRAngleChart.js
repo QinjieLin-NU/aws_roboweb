@@ -28,8 +28,8 @@ const data = {
             label: '',
             data: [],
             fill: false,
-            backgroundColor: '#FFD218',
-            borderColor: 'rgba(255, 210, 24)',
+            backgroundColor: '#F08080',
+            borderColor: 'rgba(240,128,128)',
             cubicInterpolationMode: 'monotone',
             borderWidth: 0
         },  
@@ -37,8 +37,8 @@ const data = {
             label: '',
             data: [],
             fill: false,
-            backgroundColor: '#18DD18',
-            borderColor: 'rgba(24, 255, 24)',
+            backgroundColor: '#DA70D6',
+            borderColor: 'rgba(218,112,214)',
             cubicInterpolationMode: 'monotone',
             borderWidth: 0
         }, 

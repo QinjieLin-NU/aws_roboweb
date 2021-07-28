@@ -9,9 +9,16 @@ import LineChart1 from "./Components/LineChart1";
 import LineChart2 from "./Components/LineChart2";
 import LidarView from "./Components/LidarView";
 import MapView from "./Components/MapView";
-import AngleChart from './Components/AngleChart';
+import FRAngleChart from './Components/FRAngleChart';
+import FLAngleChart from './Components/FLAngleChart';
 import LiveChart from './Components/LiveChart';
 import ApexChart from "./Components/ApexChart";
+import BRAngleChart from './Components/BRAngleChart';
+import BLAngleChart from './Components/BLAngleChart';
+import LinearVelChart from './Components/LinearVelChart';
+import AngleVelChart from './Components/AngleVelChart';
+import PositionXChart from './Components/PositionXChart';
+import PositionYChart from './Components/PositionYChart';
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -80,33 +87,34 @@ function ObserveSpot() {
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
                         </div>
-                        <img src={image1} className="content"></img>
-                        {/* <img src="http://192.168.10.68:9092/stream?topic=/world_view/world_camera/world_raw_image" className="content"></img> */}
-
+                        {/* <img src={image1} className="content"></img> */}
+                        <img src="http://192.168.10.68:9092/stream?topic=/world_view/world_camera/world_raw_image" className="content"></img>
                     </div>
                     <div className="top-2">
                         <div className="vertical-half">
                             <div className={classes.header}>
                                 <Map className={classes.icon} />
-                                <span className={classes.title}>joint.position.3</span>
+                                <span className={classes.title}>joint.position.1</span>
                                 <IconButton aria-label="more" className={classes.iconButton}>
                                     <MoreHoriz fontSize="small" />
                                 </IconButton>
                             </div>
                             <div className="chart-wrapper">
-                                <LineChart1 />
+                                {/* <LineChart1 /> */}
+                                <FRAngleChart />
                             </div>
                         </div>
                         <div className="vertical-half">
                             <div className={classes.header}>
                                 <Map className={classes.icon} />
-                                <span className={classes.title}>joint.position.4</span>
+                                <span className={classes.title}>joint.position.2</span>
                                 <IconButton aria-label="more" className={classes.iconButton}>
                                     <MoreHoriz fontSize="small" />
                                 </IconButton>
                             </div>
                             <div className="chart-wrapper">
-                                <LineChart2 />
+                                {/* <LineChart2 /> */}
+                                <FLAngleChart />
                             </div>
                         </div>
                     </div>
@@ -120,7 +128,8 @@ function ObserveSpot() {
                                 </IconButton>
                             </div>
                             <div className="chart-wrapper">
-                                <LineChart1 />
+                                {/* <LineChart1 /> */}
+                                < BRAngleChart/>
                             </div>
                         </div>
                         <div className="vertical-half">
@@ -132,7 +141,8 @@ function ObserveSpot() {
                                 </IconButton>
                             </div>
                             <div className="chart-wrapper">
-                                <LineChart2 />
+                                {/* <LineChart2 /> */}
+                                < BLAngleChart/>
                             </div>
                         </div>
                     </div>
@@ -146,45 +156,47 @@ function ObserveSpot() {
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
                         </div>
-                        <img src={image2} className="content"></img>
-                        {/* <div className="content"> <LidarView /> </div> */}
+                        {/* <img src={image2} className="content"></img> */}
+                        <div className="content"> <LidarView /> </div>
                     </div>
                     <div className="bottom-2">
                         <div className="vertical-half">
                             <div className={classes.header}>
                                 <Map className={classes.icon} />
-                                <span className={classes.title}>fsdp.numeric.1</span>
+                                <span className={classes.title}>velocity.linear</span>
                                 <IconButton aria-label="more" className={classes.iconButton}>
                                     <MoreHoriz fontSize="small" />
                                 </IconButton>
                             </div>
                             <div className="chart-wrapper">
-                                <LineChart1 />
+                                {/* <LineChart1 /> */}
+                                <LinearVelChart />
                             </div>
                         </div>
                         <div className="vertical-half">
                             <div className={classes.header}>
                                 <Map className={classes.icon} />
-                                <span className={classes.title}>fsdp.numeric.2</span>
+                                <span className={classes.title}>velocity.angular</span>
                                 <IconButton aria-label="more" className={classes.iconButton}>
                                     <MoreHoriz fontSize="small" />
                                 </IconButton>
                             </div>
                             <div className="chart-wrapper">
-                                <LineChart2 />
+                                {/* <LineChart2 /> */}
+                                <AngleVelChart />
                             </div>
                         </div>
                     </div>
                     <div className="bottom-3">
                         <div className={classes.header}>
                             <Map className={classes.icon} />
-                            <span className={classes.title}>Job.lot</span>
+                            <span className={classes.title}>map.view</span>
                             <IconButton aria-label="more" className={classes.iconButton}>
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
                         </div>
-                        <img src={image} className="content"></img>
-                        {/* <div className="content"> <MapView /> </div> */}
+                        {/* <img src={image} className="content"></img> */}
+                        <div className="content"> <MapView /> </div>
                     </div>
                     <div className="bottom-4">
                         <div className="vertical-half">
@@ -195,32 +207,35 @@ function ObserveSpot() {
                                     <MoreHoriz fontSize="small" />
                                 </IconButton>
                             </div>
-                            <img src={image} className="content-half"></img>
+                            {/* <img src={image} className="content-half"></img> */}
+                            <img src="http://192.168.10.68:9092/stream?topic=/camera/rgb/image_raw" className="content-half"></img>
                         </div>
                         <div className="vertical-half">
                             <div className="row-small">
                                 <div className="container-left">
                                     <div className={classes.header}>
                                         <Map className={classes.icon} />
-                                        <span className={classes.title}>joint.position.4</span>
+                                        <span className={classes.title}>position.x</span>
                                         <IconButton aria-label="more" className={classes.iconButton}>
                                             <MoreHoriz fontSize="small" />
                                         </IconButton>
                                     </div>
                                     <div className="chart-wrapper">
-                                        <LineChart2 />
+                                        {/* <LineChart2 /> */}
+                                        <PositionXChart />
                                     </div>
                                 </div>
                                 <div className="container-right">
                                     <div className={classes.header}>
                                         <Map className={classes.icon} />
-                                        <span className={classes.title}>joint.position.4</span>
+                                        <span className={classes.title}>position.y</span>
                                         <IconButton aria-label="more" className={classes.iconButton}>
                                             <MoreHoriz fontSize="small" />
                                         </IconButton>
                                     </div>
                                     <div className="chart-wrapper">
-                                        <LineChart2 />
+                                        {/* <LineChart2 /> */}
+                                        <PositionYChart />
                                     </div>
                                 </div>
                             </div>

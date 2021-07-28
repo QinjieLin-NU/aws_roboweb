@@ -57,6 +57,15 @@ function MapView(props) {
             fixedFrame: '/odom'//'/base_footprint'//'/odom'
         });
 
+        // Setup the URDF client.
+        var urdfClient = new UrdfClient({
+            ros : ros,
+            tfClient : tfClient,
+            path : 'http://192.168.10.68:9094/',
+            rootObject : viewer.scene,
+            loader : COLLADA_LOADER_2
+        });
+
         // // Setup the URDF client.
         // var urdfClient = new UrdfClient({
         //     ros : ros,

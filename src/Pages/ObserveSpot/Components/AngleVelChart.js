@@ -117,7 +117,6 @@ function AngleVelChart(props) {
         });
         
         jointstate_listener.subscribe(function(message) {	
-            console.log("got data from ros")
             joint_data = message.angular.z
         });
 

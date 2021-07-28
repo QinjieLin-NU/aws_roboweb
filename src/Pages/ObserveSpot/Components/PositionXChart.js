@@ -113,6 +113,7 @@ function PositionXChart(props) {
         });
         
         jointstate_listener.subscribe(function(message) {
+            console.log("get position")
             joint_data[0] = message.position.x
         });
 

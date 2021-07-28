@@ -1,0 +1,19 @@
+.fill-window{
+    z-index:0;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .view-wrapper{
+    z-index:1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin:20px;
+    background: rgba(28, 30, 46, 0.3);
+    border-radius: 10px;
+    padding:10px;
+  }

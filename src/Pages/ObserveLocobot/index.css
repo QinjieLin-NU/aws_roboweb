@@ -1,0 +1,113 @@
+.frame{
+    background-color: #1c1e2e;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.leftBlue{
+    position:fixed;
+    top:0;
+    left:0;
+    width:5px;
+    margin-top: 20px;
+    height: 30px;
+    background-color:#18D2FF;
+}
+
+.top-label{
+    color:#ffffff;
+    font-size:18px;
+    margin-left:5px;
+    position:fixed;
+    top:0;
+    left:0;
+    margin-top: 23px;
+    margin-left:100px;
+}
+
+.top-button-wrapper{
+    position:fixed;
+    top:0;
+    right:0;
+    margin:20px;
+    margin-top:20px;
+    display: flex;
+}
+
+.grid{
+    position:absolute;
+    left: 0;
+    width: 100%;
+    padding-top: 60px;
+    padding-bottom:20px;
+    height:100%;
+    box-sizing: border-box
+   
+}
+
+.row{
+    width:100%;
+    padding:10px;
+    padding-left:20px;
+    padding-right:20px;
+    height:50%;
+    display:flex;
+    box-sizing: border-box
+}
+.top-1{
+    flex:40%;
+    height:100%;
+
+}
+.top-2{
+    flex:20%;
+    height:100%;
+    margin-left: 1%;
+
+}
+.top-3{
+    flex:20%;
+    height:100%;
+    margin-left: 1%;
+
+}
+.bottom-1{
+    flex:20%;
+    height:100%;
+}
+.bottom-2{
+    flex:15%;
+    height:100%;
+    margin-left: 1%;
+}
+.bottom-3{
+    flex:35%;
+    height:100%;
+    margin-left: 1%;
+}
+.bottom-4{
+    flex:30%;
+    height:100%;
+    margin-left: 1%;
+}
+.content{
+    height:90%;
+    width:100%;
+    border-radius:0 0 7px 7px;
+}
+
+.chart-wrapper{
+    height:80%;
+    background-color: #2f3752;
+    border-radius:0 0 7px 7px;
+    padding:5%;
+}
+.chart-wrapper-small{
+    height:35%;
+    background-color: #2f3752;
+    border-radius:0 0 7px 7px;
+    padding:5%;
+}

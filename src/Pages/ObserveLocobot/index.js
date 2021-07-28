@@ -89,7 +89,7 @@ function ObserveLocobot() {
                     <div className="top-2">
                         <div className={classes.header}>
                             <Map className={classes.icon} />
-                            <span className={classes.title}>Joint 1 position</span>
+                            <span className={classes.title}>Waist Shoulder</span>
                             <IconButton aria-label="more" className={classes.iconButton}>
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
@@ -102,7 +102,7 @@ function ObserveLocobot() {
                     <div className="top-3">
                         <div className={classes.header}>
                             <Map className={classes.icon} />
-                            <span className={classes.title}>Joint 2 position</span>
+                            <span className={classes.title}>Elbow Gripper</span>
                             <IconButton aria-label="more" className={classes.iconButton}>
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
@@ -129,7 +129,7 @@ function ObserveLocobot() {
                     <div className="bottom-2">
                         <div className={classes.header}>
                             <Map className={classes.icon} />
-                            <span className={classes.title}>fsdp.numeric.1</span>
+                            <span className={classes.title}>Left Finger</span>
                             <IconButton aria-label="more" className={classes.iconButton}>
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
@@ -140,7 +140,7 @@ function ObserveLocobot() {
                         </div>
                         <div className={classes.header}>
                             <Map className={classes.icon} />
-                            <span className={classes.title}>fsdp.numeric.2</span>
+                            <span className={classes.title}>Right Finger</span>
                             <IconButton aria-label="more" className={classes.iconButton}>
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
@@ -153,7 +153,7 @@ function ObserveLocobot() {
                     <div className="bottom-3">
                         <div className={classes.header}>
                             <Map className={classes.icon} />
-                            <span className={classes.title}>Job.lot</span>
+                            <span className={classes.title}>Robot Model</span>
                             <IconButton aria-label="more" className={classes.iconButton}>
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
@@ -167,7 +167,7 @@ function ObserveLocobot() {
                     <div className="bottom-4">
                         <div className={classes.header}>
                             <Map className={classes.icon} />
-                            <span className={classes.title}>Capture</span>
+                            <span className={classes.title}>Wrist Angle Rotation</span>
                             <IconButton aria-label="more" className={classes.iconButton}>
                                 <MoreHoriz fontSize="small" />
                             </IconButton>

@@ -7,6 +7,12 @@ import image1 from "./../RobotView/media/view1.jpeg";
 import image2 from "./../RobotView/media/view2.jpeg";
 import LineChart1 from "./Components/LineChart1";
 import LineChart2 from "./Components/LineChart2";
+import LidarView from "./Components/LidarView";
+import MapView from "./Components/MapView";
+import AngleChart from './Components/AngleChart';
+import LiveChart from './Components/LiveChart';
+import ApexChart from "./Components/ApexChart";
+
 const useStyles = makeStyles(theme => ({
     button: {
         background: theme.palette.background.default2,
@@ -50,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function Observe() {
+function ObserveSpot() {
     const classes = useStyles();
     return (
         <div className="frame">
@@ -75,6 +81,7 @@ function Observe() {
                             </IconButton>
                         </div>
                         <img src={image1} className="content"></img>
+                        {/* <img src="http://192.168.10.68:9092/stream?topic=/world_view/world_camera/world_raw_image" className="content"></img> */}
 
                     </div>
                     <div className="top-2">
@@ -86,7 +93,8 @@ function Observe() {
                             </IconButton>
                         </div>
                         <div className="chart-wrapper">
-                        <LineChart1  />
+                        {/* <LineChart1  /> */}
+                        <AngleChart/>
                         </div>
                     </div>
                     <div className="top-3">
@@ -113,6 +121,7 @@ function Observe() {
                             </IconButton>
                         </div>
                         <img src={image2} className="content"></img>
+                        {/* <div className="content"> <LidarView /> </div> */}
                     </div>
                     <div className="bottom-2">
                         <div className={classes.header}>
@@ -145,6 +154,7 @@ function Observe() {
                             </IconButton>
                         </div>
                         <img src={image} className="content"></img>
+                        {/* <div className="content"> <MapView /> </div> */}
                     </div>
                     <div className="bottom-4">
                         <div className={classes.header}>
@@ -165,4 +175,4 @@ function Observe() {
     );
 }
 
-export default Observe;
+export default ObserveSpot;

@@ -3,10 +3,6 @@ import { Button, ButtonGroup, IconButton } from "@material-ui/core";
 import { Map, Image, MoreHoriz } from "@material-ui/icons"
 import { makeStyles } from "@material-ui/core/styles";
 
-import view1 from '../media/view1.jpeg';
-import view2 from '../media/view2.jpeg';
-const depth_camera = "http://localhost:8080/stream?topic=/depth_to_rgb/image_raw"
-
 const useStyles = makeStyles(theme => ({
     root: {
         zindex: "1",
@@ -51,28 +47,23 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-function MiniView_Ir(props) {
+function MiniViewImage(props) {
     const classes = useStyles();
     return (
         <div className={classes.root}>
             <div className={classes.header}>
                 {props.src == "depth camera" ? <Map className={classes.icon} /> : <Image className={classes.icon} />}
-                <span className={classes.title}>{"IR Camera" }</span>
+                <span className={classes.title}>{props.src == "depth camera" ? "depth camera" : "model"}</span>
 
                 <IconButton aria-label="more" className={classes.iconButton}>
                     <MoreHoriz fontSize="small" />
                 </IconButton>
             </div>
-            {/* <img src={props.src=="depth camera"?depth_camera:"None"} className={classes.image}></img> */}
-            <img src="http://192.168.50.4:8080/stream?topic=/ir/image_raw"
- className={classes.image}></img>
-            {/* <div id={props.src == "depth camera" ? "depth_camera" : "None"}  className={classes.image}></div> */}
-            {/* <div id={props.src == "model" ? "urdf" : "None"}  className={classes.image}></div> */}
-            
+            <img src="http://192.168.10.68:9092/stream?topic=/camera/rgb/image_raw"
+            className={classes.image}></img>            
         </div>
     );
 }
 
-export default MiniView_Ir;
-
+export default MiniViewImage;
 

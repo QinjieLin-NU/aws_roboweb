@@ -2,12 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Button, Grid, Slider } from "@material-ui/core";
 import { VolumeDown, VolumeUp } from "@material-ui/icons"
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { Viewer, Grid as rosGrid, UrdfClient, PointCloud2 } from 'ros3d';
-// import { Grid as UrdfClient } from 'ros3d';
+import { Viewer, Grid as rosGrid, UrdfClient, PointCloud2, LaserScan } from 'ros3d';
 import {COLLADA_LOADER_2} from 'three-collada-loader-2';
 import ROSLIB from "roslib";
-// import PointCloud2 from "ros3djs";
-// import {Viewer, PointCloud2} from 'ros3d';
 import Joystick from "./joystick";
 
 
@@ -73,11 +70,11 @@ function ControlPanel(props) {
     var timer;
     var linear_speed;
     var angular_speed;
+    var goal_client;
 
     useEffect(() => {
         ros = new ROSLIB.Ros({
-            // url : 'ws://192.168.50.4:9090'
-            url: 'ws://localhost:9090'
+            url: 'ws://192.168.10.68:9090'
         });
 
 
@@ -89,60 +86,59 @@ function ControlPanel(props) {
             antialias: true
         });
 
-        // Add a grid.
-        viewer.addObject(new rosGrid());
-        // viewer.addObject(new Viewer());
-
-        // Setup a client to listen to TFs.
+        // Setup a client to listen to robot model TFs.
         var tfClient = new ROSLIB.TFClient({
-            ros: ros,
-            angularThres: 0.01,
-            transThres: 0.01,
-            rate: 10.0
+            ros : ros,
+            angularThres : 0.01,
+            transThres : 0.01,
+            rate : 10.0,
+            fixedFrame: '/base_link'//'/base_footprint'//'/odom'
         });
 
-        // Setup the URDF client.
-        var urdfClient = new UrdfClient({
+        var scanclient = new LaserScan({
             ros: ros,
+            topic: '/scan',
             tfClient: tfClient,
-            path : 'http://192.168.50.4:8002/',
-            // path: 'http://localhost:8002/',
             rootObject: viewer.scene,
-            loader: COLLADA_LOADER_2
+            material: { size: 0.4, color: 0x18D2FF },
+            max_pts: 1000,
         });
 
-        // Setup a client to listen to TFs.
-        var pointCloudTfClient = new ROSLIB.TFClient({
-        ros : ros,
-        angularThres : 0.01,
-        transThres : 0.01,
-        rate : 10.0,
-        fixedFrame : '/camera_link'
+            // Setup the URDF client.
+        var urdfClient = new UrdfClient({
+            ros : ros,
+            tfClient : tfClient,
+            path : 'http://192.168.10.68:9094/',
+            rootObject : viewer.scene,
+            loader : COLLADA_LOADER_2
         });
 
-        // create pointcloud viewer
-        var pointCloudViewer = new Viewer({
-            divID: 'pointcloud',
-            width: '200',
-            height: '200',
-            antialias: true
+        // setup the actionlib client
+        var actionClient = new ROSLIB.ActionClient({
+            ros : ros,
+            actionName : "move_base_msgs/MoveBaseAction",
+            serverName : '/move_base'
         });
 
-        var tmpSub = new PointCloud2({
-            ros:ros,
-            tfClient: pointCloudTfClient, 
-            rootObject: pointCloudViewer.scene,
-            topic: '/points2',
-           //  material: {size: 0.01, color: 0xeeeeee },
-            material: {size: 0.01},
-            colorsrc: 'rgb',
-            
-            max_pts: 5000000 // 5 million points
-         });
-
-        function displayCloud(msg){
-            tmpSub.processMessage(msg);
-          }
+        // create a goal
+        var orientation = new ROSLIB.Quaternion({x:0, y:0, z:0, w:1});
+        var positionVec3 = new ROSLIB.Vector3([0.0,0.0,0.0])
+        var home_pose = new ROSLIB.Pose({
+            position :    positionVec3,
+            orientation : orientation
+          });
+        goal_client = new ROSLIB.Goal({
+            actionClient : actionClient,
+            goalMessage : {
+            target_pose : {
+                header : {
+                frame_id : 'map'
+                },
+                pose : home_pose
+            }
+            }
+        });
+    
 
         ros.on('connection', function () {
             document.getElementById("status").innerHTML = "Connected";
@@ -159,7 +155,7 @@ function ControlPanel(props) {
         cmd_vel_listener = new ROSLIB.Topic({
             ros: ros,
             // name : "/navigation_velocity_smoother/raw_cmd_vel",
-            name: "/mobile_base/commands/velocity",
+            name: "/cmd_vel",
             messageType: 'geometry_msgs/Twist'
         });
 
@@ -196,37 +192,24 @@ function ControlPanel(props) {
 
     //this.onActivity({ position:{ x:0, y:0 }, intensity:{ x:0, y:0 } })
     const onMove = ({ position, intensity }) => {
-        // timer = setInterval(function () {
-        //     move(linear_speed, angular_speed);
-        //   }, 25);
-        const max_linear = 0.3; // m/s
+        const max_linear = 2.0; // m/s
         const max_angular = 4.0; // rad/s
         const max_distance = 75.0; // pixels;
         var x = position.x;
         var y = position.y;
         var distance = Math.pow(Math.pow(x, 2) + Math.pow(y, 2), 0.5);
         // first and second quadrant
-        // console.log("y"+y);
-        // console.log("distance"+distance);
         if (y >0){
             var radian = Math.asin(y / distance);
         }
         else {
-            // console.log("Math.asin(-y / distance)"+Math.asin(-y / distance))
             var radian = Math.asin(-y / distance) + Math.PI;
         }
-        
-
-        // console.log(distance)
         linear_speed = Math.sin(radian) * max_linear * distance / max_distance;
         angular_speed = -Math.cos(radian) * max_angular * distance / max_distance;
-        // console.log("radian"+radian)
-        //console.log(linear_speed, angular_speed);
-        // move(linear_speed, angular_speed);
-        // clearInterval(timer);
         move()
+        console.log("get vel")
     }
-
 
 
     const move = () => {
@@ -251,6 +234,11 @@ function ControlPanel(props) {
         setVolume(newValue);
     };
 
+    const goHome = () => {
+        console.log("clickg home");
+        goal_client.send()
+    };
+
     return (
         <div className={classes.wrapper}>
 
@@ -260,7 +248,7 @@ function ControlPanel(props) {
             </div>
             <div className={classes.flex}>
                 <CustomButton variant="contained" color="primary" className={classes.margin}>STAIRS</CustomButton>
-                <CustomButton variant="contained" color="primary" className={classes.margin}>HOME</CustomButton>
+                <CustomButton variant="contained" color="primary" className={classes.margin} onClick={goHome}>HOME</CustomButton>
             </div>
             <div className={classes.flex}>
                 <div className="half">

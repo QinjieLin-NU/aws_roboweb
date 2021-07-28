@@ -9,7 +9,7 @@ import ControlPanel from "./Components/controlPanel";
 import TopMenu from "./Components/topMenu";
 import ExistButton from "./Components/ExistButton";
 // import Image from 'next/image';
-function RobotView() {
+function OperatorLocobot() {
     return (
         <div>
             {/* <img src={video} className="fill-window"></img> */}
@@ -29,4 +29,4 @@ function RobotView() {
     );
 }
 
-export default RobotView;
+export default OperatorLocobot;

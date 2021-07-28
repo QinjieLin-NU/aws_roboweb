@@ -7,6 +7,8 @@ import { theme } from "./theme";
 import SimpleMenu from "./DropDown";
 import ObserveSpot from "./Pages/ObserveSpot";
 import OperatorSpot from "./Pages/OperatorSpot";
+import ObserveLocobot from "./Pages/ObserveLocobot";
+import OperatorLocobot from "./Pages/OperatorLocobot";
 
 function App() {
   const [page, setPage] = useState(0);

@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function Observe() {
+function ObserveLocobot() {
     const classes = useStyles();
     return (
         <div className="frame">
@@ -173,4 +173,4 @@ function Observe() {
     );
 }
 
-export default Observe;
+export default ObserveLocobot;

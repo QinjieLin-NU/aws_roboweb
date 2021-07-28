@@ -76,8 +76,8 @@ function ControlPanel(props) {
 
     useEffect(() => {
         ros = new ROSLIB.Ros({
-            // url : 'ws://192.168.50.4:9090'
-            url: 'ws://localhost:9090'
+            url : 'ws://192.168.50.4:9090'
+            // url: 'ws://localhost:9090'
         });
 
 

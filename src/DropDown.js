@@ -40,6 +40,14 @@ export default function SimpleMenu(props) {
     props.changeView(1);
     setAnchorEl(null);
   };
+  const openControl1 = () => {
+    props.changeView(2);
+    setAnchorEl(null);
+  };
+  const openObserve1 = () => {
+    props.changeView(3);
+    setAnchorEl(null);
+  };
 
 
   return (
@@ -54,8 +62,10 @@ export default function SimpleMenu(props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={openControl}>Robot Control</MenuItem>
-        <MenuItem onClick={openObserve}>Observe</MenuItem>
+        <MenuItem onClick={openControl}>Spot Control</MenuItem>
+        <MenuItem onClick={openObserve}>Spot Observe</MenuItem>
+        <MenuItem onClick={openControl1}>Locobot Control</MenuItem>
+        <MenuItem onClick={openObserve1}>Locobot Observe</MenuItem>
       </Menu>
     </div>
   );

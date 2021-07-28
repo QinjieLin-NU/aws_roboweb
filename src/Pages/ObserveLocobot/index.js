@@ -2,9 +2,9 @@ import './index.css';
 import { MoreHoriz, FilterList, Map } from "@material-ui/icons"
 import { IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import image from "./../RobotView/media/Video.jpeg";
-import image1 from "./../RobotView/media/view1.jpeg";
-import image2 from "./../RobotView/media/view2.jpeg";
+import image from "./../OperatorLocobot/media/Video.jpeg";
+import image1 from "./../OperatorLocobot/media/view1.jpeg";
+import image2 from "./../OperatorLocobot/media/view2.jpeg";
 // import ControlPanel from "./Components/controlPanel";
 import MiniView_Urdf from './Components/miniView_urdf';
 import MiniView_Pointcloud from './Components/miniView_pointcloud';

@@ -29,7 +29,7 @@ function LidarView(props) {
         var viewer = new Viewer({
             divID: 'lidar-view',
             width: '500',
-            height: '375',
+            height: '325',
             antialias: true
         });
 

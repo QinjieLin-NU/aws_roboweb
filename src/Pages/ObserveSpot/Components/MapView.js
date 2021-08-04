@@ -28,8 +28,8 @@ function MapView(props) {
         // Create the main viewer.
         var viewer = new Viewer({
             divID: 'map-view',
-            width: '600',
-            height: '375',
+            width: '400',
+            height: '325',
             antialias: true
         });
 

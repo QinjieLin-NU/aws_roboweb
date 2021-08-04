@@ -16,31 +16,34 @@ Chart.register(StreamingPlugin);
 const data = {
     datasets: [
         {
-            label: '',
+            label: 'a',
             data: [],
             fill: false,
             backgroundColor: '#18D2FF',
             borderColor: 'rgba(24, 210, 255)',
             cubicInterpolationMode: 'monotone',
-            borderWidth: 0
+            borderWidth: 1,
+            pointRadius: 0.5,
         },
         {
-            label: '',
+            label: 'b',
             data: [],
             fill: false,
             backgroundColor: '#FFD218',
             borderColor: 'rgba(255, 210, 24)',
             cubicInterpolationMode: 'monotone',
-            borderWidth: 0
+            borderWidth: 1,
+            pointRadius: 0.5,
         },  
         {
-            label: '',
+            label: 'c',
             data: [],
             fill: false,
             backgroundColor: '#18DD18',
             borderColor: 'rgba(24, 255, 24)',
             cubicInterpolationMode: 'monotone',
-            borderWidth: 0
+            borderWidth: 1,
+            pointRadius: 0.5,
         }, 
     ],
     
@@ -71,7 +74,7 @@ function BLAngleChart(props) {
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                display:true,
+                display:false,
                 labels: {
                     color: "#BAC4E2",
                     font: {
@@ -114,13 +117,10 @@ function BLAngleChart(props) {
                 realtime: {
                     duration: 20000,
                     refresh: 100,
-                    delay: 2000,
+                    delay: 0,
                     onRefresh: onRefresh
                 }
             },
-                // interaction: {
-            // intersect: false
-            // }
         },
     };
 

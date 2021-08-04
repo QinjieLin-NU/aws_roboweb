@@ -16,12 +16,14 @@ Chart.register(StreamingPlugin);
 const data = {
     datasets: [
         {
-            label: '',
+            label: 'a',
             data: [],
             fill: true,
             backgroundColor: '#18D2FF',
             borderColor: 'rgba(24, 210, 255)',
             cubicInterpolationMode: 'monotone',
+            borderWidth: 1,
+            pointRadius: 0.5,
         },
     ],
     
@@ -76,8 +78,8 @@ function AngleVelChart(props) {
                     color: "#000000",
                     borderColor: "#BAC4E2"
                 },
-                max : 2.,    
-                min : -2.,
+                max : 1,    
+                min : -1.,
             },
             x: {
                 type: 'realtime',
@@ -93,7 +95,7 @@ function AngleVelChart(props) {
                 realtime: {
                     duration: 20000,
                     refresh: 1000, //to short will cause mess
-                    delay: 2000,
+                    delay: 0,
                     onRefresh: onRefresh
                 }
             },

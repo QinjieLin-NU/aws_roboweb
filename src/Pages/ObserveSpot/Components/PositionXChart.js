@@ -16,12 +16,14 @@ Chart.register(StreamingPlugin);
 const data = {
     datasets: [
         {
-            label: '',
+            label: 'a',
             data: [],
             fill: false,
             backgroundColor: '#18D2FF',
             borderColor: 'rgba(24, 210, 255)',
             cubicInterpolationMode: 'monotone',
+            borderWidth: 1,
+            pointRadius: 0.5,
         },
     ],
     
@@ -92,7 +94,7 @@ function PositionXChart(props) {
                 realtime: {
                     duration: 20000,
                     refresh: 1000, //to short will cause mess
-                    delay: 2000,
+                    delay: 0,
                     onRefresh: onRefresh
                 }
             },

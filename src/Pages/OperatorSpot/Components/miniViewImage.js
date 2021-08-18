@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(theme => ({
     root: {
         zindex: "1",
-        opacity:"1"
+        opacity:"1",
     },
     image: {
         width: "200px",

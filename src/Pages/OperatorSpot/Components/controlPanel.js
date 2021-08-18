@@ -6,6 +6,7 @@ import { Viewer, Grid as rosGrid, UrdfClient, PointCloud2, LaserScan } from 'ros
 import {COLLADA_LOADER_2} from 'three-collada-loader-2';
 import ROSLIB from "roslib";
 import Joystick from "./joystick";
+import SpotOperatorConnection from "../ros_websocket";
 
 
 
@@ -73,47 +74,48 @@ function ControlPanel(props) {
     var goal_client;
 
     useEffect(() => {
-        ros = new ROSLIB.Ros({
-            url: 'ws://192.168.10.68:9090'
-        });
+        ros = SpotOperatorConnection;
+        // ros = new ROSLIB.Ros({
+        //     url: 'ws://192.168.10.68:9090'
+        // });
 
 
-        // Create the main viewer.
-        var viewer = new Viewer({
-            divID: 'urdf',
-            width: '200',
-            height: '200',
-            antialias: true
-        });
+        // // Create the main viewer.
+        // var viewer = new Viewer({
+        //     divID: 'urdf',
+        //     width: '200',
+        //     height: '200',
+        //     antialias: true
+        // });
 
-        // Setup a client to listen to robot model TFs.
-        var tfClient = new ROSLIB.TFClient({
-            ros : ros,
-            angularThres : 0.01,
-            transThres : 0.01,
-            rate : 10.0,
-            fixedFrame: '/base_link'//'/base_footprint'//'/odom'
-        });
+        // // Setup a client to listen to robot model TFs.
+        // var tfClient = new ROSLIB.TFClient({
+        //     ros : ros,
+        //     angularThres : 0.01,
+        //     transThres : 0.01,
+        //     rate : 10.0,
+        //     fixedFrame: '/base_link'//'/base_footprint'//'/odom'
+        // });
 
-        var scanclient = new LaserScan({
-            ros: ros,
-            topic: '/scan',
-            tfClient: tfClient,
-            rootObject: viewer.scene,
-            material: { size: 0.4, color: 0x18D2FF },
-            max_pts: 1000,
-        });
+        // var scanclient = new LaserScan({
+        //     ros: ros,
+        //     topic: '/scan',
+        //     tfClient: tfClient,
+        //     rootObject: viewer.scene,
+        //     material: { size: 0.4, color: 0x18D2FF },
+        //     max_pts: 1000,
+        // });
 
-            // Setup the URDF client.
-        var urdfClient = new UrdfClient({
-            ros : ros,
-            tfClient : tfClient,
-            path : 'http://192.168.10.68:9094/',
-            rootObject : viewer.scene,
-            loader : COLLADA_LOADER_2
-        });
+        //     // Setup the URDF client.
+        // var urdfClient = new UrdfClient({
+        //     ros : ros,
+        //     tfClient : tfClient,
+        //     path : 'http://192.168.10.68:9094/',
+        //     rootObject : viewer.scene,
+        //     loader : COLLADA_LOADER_2
+        // });
 
-        // setup the actionlib client
+        // // setup the actionlib client
         var actionClient = new ROSLIB.ActionClient({
             ros : ros,
             actionName : "move_base_msgs/MoveBaseAction",
@@ -186,7 +188,7 @@ function ControlPanel(props) {
 
         topicsClient.callService(request, function (result) {
             console.log("Getting topics...");
-            console.log(result.topics);
+            // console.log(result.topics);
         });
     };
 

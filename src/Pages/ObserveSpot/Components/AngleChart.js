@@ -7,6 +7,7 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { Viewer, Grid as rosGrid, UrdfClient, PointCloud2, LaserScan,OccupancyGridClient } from 'ros3d';
 import {COLLADA_LOADER_2} from 'three-collada-loader-2';
 import ROSLIB from "roslib";
+import SpotObserveConnection from '../ros_websocket'
 
 const data = {
     // labels: ['1', '2', '3', '4', '5', '6'],
@@ -109,9 +110,10 @@ function AngleChart(props) {
     var joint_data;
 
     useEffect(() => {
-        ros = new ROSLIB.Ros({
-            url: 'ws://192.168.10.68:9090'
-        });
+        ros = SpotObserveConnection;
+      // ros = new ROSLIB.Ros({
+        //     url: 'ws://192.168.10.68:9090'
+        // });
 
         jointstate_listener = new ROSLIB.Topic({
             ros : ros,

@@ -10,6 +10,7 @@ import { Viewer, Grid as rosGrid, UrdfClient, PointCloud2, LaserScan,OccupancyGr
 import {COLLADA_LOADER_2} from 'three-collada-loader-2';
 import ROSLIB from "roslib";
 import { Component } from 'react';
+import SpotObserveConnection from '../ros_websocket';
 
 Chart.register(StreamingPlugin);
 
@@ -127,9 +128,10 @@ function FRAngleChart(props) {
     };
 
     useEffect(() => {
-        ros = new ROSLIB.Ros({
-            url: 'ws://192.168.10.68:9090'
-        });
+        ros = SpotObserveConnection;
+        // ros = new ROSLIB.Ros({
+        //     url: 'ws://192.168.10.68:9090'
+        // });
 
         jointstate_listener = new ROSLIB.Topic({
             ros : ros,

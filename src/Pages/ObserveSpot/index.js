@@ -2,24 +2,23 @@ import './index.css';
 import { MoreHoriz, FilterList, Map } from "@material-ui/icons"
 import { IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import image from "./../OperatorLocobot/media/Video.jpeg";
-import image1 from "./../OperatorLocobot/media/view1.jpeg";
-import image2 from "./../OperatorLocobot/media/view2.jpeg";
+import image from "./media/Video.jpeg";
+import image1 from "./media/view1.jpeg";
+import image2 from "./media/view2.jpeg";
 import LineChart1 from "./Components/LineChart1";
 import LineChart2 from "./Components/LineChart2";
 import LidarView from "./Components/LidarView";
 import MapView from "./Components/MapView";
 import FRAngleChart from './Components/FRAngleChart';
 import FLAngleChart from './Components/FLAngleChart';
-import LiveChart from './Components/LiveChart';
-import ApexChart from "./Components/ApexChart";
 import BRAngleChart from './Components/BRAngleChart';
 import BLAngleChart from './Components/BLAngleChart';
 import LinearVelChart from './Components/LinearVelChart';
 import AngleVelChart from './Components/AngleVelChart';
 import PositionXChart from './Components/PositionXChart';
 import PositionYChart from './Components/PositionYChart';
-
+import ObserveWorldImg from './Components/ObserveWorldView';
+import ObserveCameraImg from './Components/ObserveCameraView';
 const useStyles = makeStyles(theme => ({
     button: {
         background: theme.palette.background.default2,
@@ -87,8 +86,8 @@ function ObserveSpot() {
                                 <MoreHoriz fontSize="small" />
                             </IconButton>
                         </div>
-                        {/* <img src={image1} className="content"></img> */}
-                        <img src="http://192.168.10.68:9092/stream?topic=/world_view/world_camera/world_raw_image" className="content"></img>
+                        {/* <img src="http://192.168.10.68:9092/stream?topic=/world_view/world_camera/world_raw_image" className="content"></img> */}
+                        <ObserveWorldImg></ObserveWorldImg>
                     </div>
                     <div className="top-2">
                         <div className="vertical-half">
@@ -207,8 +206,8 @@ function ObserveSpot() {
                                     <MoreHoriz fontSize="small" />
                                 </IconButton>
                             </div>
-                            {/* <img src={image} className="content-half"></img> */}
-                            <img src="http://192.168.10.68:9092/stream?topic=/camera/rgb/image_raw" className="content-half"></img>
+                            {/* <img src="http://192.168.10.68:9092/stream?topic=/camera/rgb/image_raw" className="content-half"></img> */}
+                            <ObserveCameraImg></ObserveCameraImg>
                         </div>
                         <div className="vertical-half">
                             <div className="row-small">

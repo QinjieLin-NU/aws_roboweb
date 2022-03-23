@@ -26,7 +26,8 @@ class ObserveWorldImg extends React.Component {
     render() {
         return (
         // <div>
-            <img id="spot-observe-worldview" alt="World view image"  className="content" src={ "http://192.168.10.68:9092/stream?topic=/world_view/world_camera/world_raw_image"}  ></img>
+            <img id="spot-observe-worldview" alt="World view image"  className="content" 
+            src={ "http://192.168.10.68:9092/stream?topic=/world_view/world_camera/world_raw_image&type=mjpeg&quality=30"}  ></img>
         // </div>
         ); 
       }

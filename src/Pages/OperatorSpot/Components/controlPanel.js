@@ -75,45 +75,6 @@ function ControlPanel(props) {
 
     useEffect(() => {
         ros = SpotOperatorConnection;
-        // ros = new ROSLIB.Ros({
-        //     url: 'ws://192.168.10.68:9090'
-        // });
-
-
-        // // Create the main viewer.
-        // var viewer = new Viewer({
-        //     divID: 'urdf',
-        //     width: '200',
-        //     height: '200',
-        //     antialias: true
-        // });
-
-        // // Setup a client to listen to robot model TFs.
-        // var tfClient = new ROSLIB.TFClient({
-        //     ros : ros,
-        //     angularThres : 0.01,
-        //     transThres : 0.01,
-        //     rate : 10.0,
-        //     fixedFrame: '/base_link'//'/base_footprint'//'/odom'
-        // });
-
-        // var scanclient = new LaserScan({
-        //     ros: ros,
-        //     topic: '/scan',
-        //     tfClient: tfClient,
-        //     rootObject: viewer.scene,
-        //     material: { size: 0.4, color: 0x18D2FF },
-        //     max_pts: 1000,
-        // });
-
-        //     // Setup the URDF client.
-        // var urdfClient = new UrdfClient({
-        //     ros : ros,
-        //     tfClient : tfClient,
-        //     path : 'http://192.168.10.68:9094/',
-        //     rootObject : viewer.scene,
-        //     loader : COLLADA_LOADER_2
-        // });
 
         // // setup the actionlib client
         var actionClient = new ROSLIB.ActionClient({
@@ -199,6 +160,7 @@ function ControlPanel(props) {
         const max_distance = 75.0; // pixels;
         var x = position.x;
         var y = position.y;
+        console.log("move distance",x,y)
         var distance = Math.pow(Math.pow(x, 2) + Math.pow(y, 2), 0.5);
         // first and second quadrant
         if (y >0){

@@ -1,5 +1,6 @@
 import React from 'react';
 import Iframe from 'react-iframe'
+import Img from 'react-cool-img';
 
 class WorldViewImg extends React.Component {
 
@@ -15,11 +16,18 @@ class WorldViewImg extends React.Component {
       }
 
     componentWillMount() {
-    console.log(" will mount function",this.state._idMounted);
+      if (document.getElementById("spot-operator-worldview") ){
+        console.log("xx")
+      } 
+      console.log(" will mount function",this.state._idMounted);
     }   
 
     componentDidUpdate() {
         console.log("did update function");
+    }
+
+    shouldComponentUpdate(){
+      return true
     }
 
     componentWillUnmount() {
@@ -32,7 +40,9 @@ class WorldViewImg extends React.Component {
         console.log("render function",this.state._idMounted)
         return (
         <div>
-            <img id="spot-operator-worldview" alt="World view image" src={ "http://192.168.10.68:9092/stream?topic=/world_view/world_camera/world_raw_image"} className="fill-window" ></img>
+            <Img id="spot-operator-worldview" alt="World view image" 
+            src={ "http://192.168.10.68:9092/stream?topic=/world_view/world_camera/world_raw_image&type=mjpeg&quality=30"} className="fill-window" >
+            </Img>
         </div>
         ); 
       }

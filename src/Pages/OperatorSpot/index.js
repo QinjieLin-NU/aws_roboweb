@@ -14,7 +14,6 @@ function OperatorSpot() {
             <WorldViewImg/>
             <div className="view-wrapper">
                 <CameraViewImg src="depth camera"/>
-                {/* <MiniView src="model"/> */}
                 <ModelView src="model"/>
             </div>
             <BottomBar/>
